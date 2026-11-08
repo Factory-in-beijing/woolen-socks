@@ -39,10 +39,15 @@
 25. პატარა, შექცევადი ცვლილებები, CI გეიტები; 26. გადაწყვეტილება ADR-ში; 27. უწყვეტი მცირე რეფაქტორინგი.
 
 ## Repo-ს სტრუქტურა
-- `apps/web` — Next.js (App Router), სტუდენტის საიტი / ლენდინგი.
-- `packages/i18n` — ქართული კატალოგი და ერთადერთი formatter (Asia/Tbilisi, თეთრი → ლარი).
-- `packages/ui` — design tokens (ვები + მობილური).
-- მომავალი: `apps/api` (Cloud Run), `apps/partner`, `apps/admin`, `packages/api-client` (OpenAPI-დან).
+- `apps/web` — Next.js (App Router): სტუდენტის საიტი / ლენდინგი; `data/` (api-client+Query), `features/<name>`, `app/` (თხელი route), `e2e/` (Playwright).
+- `apps/api` — Cloud Run API (Fastify): `src/app.ts`, `src/shared/` (AppError, Clock, logger, trace), `src/modules/<m>/{http,application,domain,infrastructure,definition.ts,index.ts}` (M1–M8; ფენები ემატება use case-ებთან ერთად).
+- `packages/schemas` — zod: შეცდომის კოდები/სტატუსი, ფული, დრო, პაგინაცია. `packages/api-client` — OpenAPI (`openapi/v1.yaml`) + გენერირებული ტიპები + ტიპიზებული კლიენტი/Query. `packages/i18n` — ქართული კატალოგი და ერთადერთი formatter. `packages/ui` — design tokens.
+- `docs/architecture-digest.md` — PDF-ის სრული სამუშაო დაიჯესტი (მოდულები, ეკრანები, ნაბიჯები, ღია #1–#19). **ახალი ამოცანის წინ წაიკითხე შესაბამისი მოდული/ნაკადი.** `docs/adr/` — გადაწყვეტილებები.
+- `firebase.json`, `firestore.rules`/`storage.rules` (deny-all), `firestore.indexes.json`; `infra/terraform`; `load/` (k6); `cloudbuild*.yaml`.
+- მომავალი: `apps/partner`, `apps/admin`, მობილური (ფაზა 7).
 
 ## ბრძანებები
-- `pnpm install` · `pnpm dev` · `pnpm build` · `pnpm typecheck` · `pnpm test`
+- `pnpm install` · `pnpm dev` (ვები) · `pnpm dev:api` · `pnpm emulators` · `pnpm build` · `pnpm typecheck` · `pnpm test`
+- გეიტები: `pnpm format:check` · `pnpm lint` · `pnpm architecture` · `pnpm api:check` (generate + additive-only diff, `API_BASE_REF=origin/main`) · `pnpm test:integration` (Emulator Suite, საჭიროა Java) · `pnpm test:e2e` · `pnpm test:load` (k6). ყველა სწრაფი გეიტი ერთად: `pnpm gates`.
+- API ცვლილება: ჯერ `packages/api-client/openapi/v1.yaml`, მერე `pnpm api:generate`, მერე კოდი.
+- e2e ამ cloud-გარემოში: `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/opt/pw-browsers/chromium pnpm test:e2e` (`playwright install` არ გაუშვა).

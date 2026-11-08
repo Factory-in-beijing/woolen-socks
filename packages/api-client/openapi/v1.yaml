@@ -1,0 +1,113 @@
+openapi: 3.1.0
+info:
+  title: DriveNet API
+  version: 1.0.0
+  description: >
+    Single contract for web, mobile and admin (principle 1). Changes are additive only.
+    Auth: Firebase ID token as Bearer. Writes: Idempotency-Key. Errors: problem+json.
+servers:
+  - url: /
+paths:
+  /v1/health:
+    get:
+      operationId: getHealth
+      summary: Liveness probe (public)
+      security: []
+      responses:
+        "200":
+          description: Service is up
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Health"
+        default:
+          $ref: "#/components/responses/Problem"
+components:
+  securitySchemes:
+    firebaseIdToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Firebase ID token (JWT)
+  parameters:
+    WorkspaceId:
+      name: X-Workspace-Id
+      in: header
+      required: false
+      description: School or personal workspace. The server verifies membership; the client never decides access.
+      schema: { type: string, minLength: 1 }
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: Required on every POST/PUT. Same key means same effect and same response.
+      schema: { type: string, minLength: 8, maxLength: 128 }
+    Limit:
+      name: limit
+      in: query
+      schema: { type: integer, minimum: 1, maximum: 100, default: 20 }
+    Cursor:
+      name: cursor
+      in: query
+      description: Opaque cursor from `nextCursor`. Offset pagination is forbidden.
+      schema: { type: string, minLength: 1 }
+  responses:
+    Problem:
+      description: Error (RFC 9457 problem+json)
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/Problem"
+  schemas:
+    Health:
+      type: object
+      required: [status]
+      properties:
+        status: { type: string, enum: [ok] }
+    ErrorCode:
+      type: string
+      enum:
+        - validation_failed
+        - unauthenticated
+        - forbidden
+        - not_found
+        - slot_taken
+        - hold_expired
+        - invalid_transition
+        - version_mismatch
+        - rate_limited
+        - dependency_unavailable
+        - payment_unavailable
+        - internal_error
+    Problem:
+      type: object
+      required: [type, title, status, code, traceId, retryable]
+      properties:
+        type: { type: string }
+        title: { type: string }
+        status: { type: integer }
+        code: { $ref: "#/components/schemas/ErrorCode" }
+        traceId: { type: string }
+        retryable: { type: boolean }
+        detail: { type: string }
+        errors:
+          type: array
+          items:
+            type: object
+            required: [path, message]
+            properties:
+              path: { type: string }
+              message: { type: string }
+    Money:
+      type: object
+      required: [amountTetri, currency]
+      properties:
+        amountTetri: { type: integer, description: Integer tetri, never floating point }
+        currency: { type: string, enum: [GEL] }
+    Instant:
+      type: string
+      format: date-time
+      description: UTC ISO-8601 instant
+    BusinessDate:
+      type: string
+      format: date
+      description: Business date in Asia/Tbilisi, computed by the server

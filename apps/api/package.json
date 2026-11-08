@@ -1,0 +1,31 @@
+{
+  "name": "@drivenet/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "build": "esbuild src/main.ts --bundle --platform=node --format=esm --target=node22 --outfile=dist/main.js --external:firebase-admin --external:@google-cloud/tasks --banner:js=\"import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);\"",
+    "start": "node dist/main.js",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run --passWithNoTests",
+    "test:integration": "firebase emulators:exec --only firestore,auth,storage --project demo-drivenet \"vitest run --config vitest.integration.config.ts --passWithNoTests\""
+  },
+  "dependencies": {
+    "@drivenet/api-client": "workspace:*",
+    "@drivenet/schemas": "workspace:*",
+    "@google-cloud/tasks": "7.3.1",
+    "fastify": "5.12.8",
+    "firebase-admin": "14.5.0",
+    "pino": "10.4.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "5.0.0",
+    "@types/node": "22.19.0",
+    "esbuild": "0.28.2",
+    "firebase": "12.19.0",
+    "tsx": "4.23.15",
+    "vitest": "5.1.0"
+  }
+}

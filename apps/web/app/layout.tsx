@@ -4,6 +4,7 @@ import { Noto_Sans_Georgian } from "next/font/google";
 import { ka } from "@drivenet/i18n";
 import "@drivenet/ui/tokens.css";
 import "./globals.css";
+import { Providers } from "./providers";
 
 const notoSansGeorgian = Noto_Sans_Georgian({
   subsets: ["georgian", "latin"],
@@ -20,7 +21,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ka" className={notoSansGeorgian.variable}>
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

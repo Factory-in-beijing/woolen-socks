@@ -1,0 +1,88 @@
+# PR gates (one pipeline for backend, web and later mobile) + staging deploy of the API.
+# Substitutions are set on the trigger. NOT yet run against a real GCP project (no project exists yet).
+substitutions:
+  _REGION: europe-west1
+  _AR_REPO: drivenet
+  _SERVICE: drivenet-api
+  _API_BASE_REF: origin/main
+steps:
+  - id: install
+    name: node:22-bookworm
+    entrypoint: bash
+    args: ["-c", "corepack enable && pnpm install --frozen-lockfile"]
+
+  - id: static-gates
+    name: node:22-bookworm
+    waitFor: [install]
+    entrypoint: bash
+    args:
+      [
+        "-c",
+        "corepack enable && pnpm format:check && pnpm lint && pnpm typecheck && pnpm architecture",
+      ]
+
+  - id: unit
+    name: node:22-bookworm
+    waitFor: [install]
+    entrypoint: bash
+    args: ["-c", "corepack enable && pnpm test"]
+
+  - id: contract
+    name: node:22-bookworm
+    waitFor: [install]
+    entrypoint: bash
+    # generated client must match the contract; the contract may only grow (principle 1)
+    args:
+      [
+        "-c",
+        "corepack enable && git fetch --depth=50 origin main || true; API_BASE_REF=${_API_BASE_REF} pnpm api:check",
+      ]
+
+  - id: integration
+    name: node:22-bookworm
+    waitFor: [install]
+    entrypoint: bash
+    # Firebase Emulator Suite needs a JRE; rules + repository tests run against the emulator, not mocks (principle 21)
+    args:
+      [
+        "-c",
+        "apt-get update -qq && apt-get install -y -qq default-jre-headless && corepack enable && pnpm test:integration",
+      ]
+
+  - id: security
+    name: node:22-bookworm
+    waitFor: [install]
+    entrypoint: bash
+    args: ["-c", "corepack enable && pnpm audit --prod --audit-level high"]
+
+  - id: build-image
+    name: gcr.io/cloud-builders/docker
+    waitFor: [static-gates, unit, contract, integration, security]
+    args:
+      [
+        "build",
+        "-f",
+        "apps/api/Dockerfile",
+        "-t",
+        "${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/${_SERVICE}:$SHORT_SHA",
+        ".",
+      ]
+
+  - id: push-image
+    name: gcr.io/cloud-builders/docker
+    args: ["push", "${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/${_SERVICE}:$SHORT_SHA"]
+
+  - id: deploy-staging
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+    entrypoint: gcloud
+    # New revision gets 0% traffic and a tag; smoke/e2e run against the tag URL, then cloudbuild.promote.yaml shifts traffic.
+    args:
+      - run
+      - deploy
+      - ${_SERVICE}
+      - --image=${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/${_SERVICE}:$SHORT_SHA
+      - --region=${_REGION}
+      - --no-traffic
+      - --tag=sha-$SHORT_SHA
+options:
+  logging: CLOUD_LOGGING_ONLY

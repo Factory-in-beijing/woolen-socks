@@ -1,0 +1,26 @@
+# Traffic shift for the API (rollout) and rollback — Cloud Run revisions, instant, no rebuild.
+#   promote:   _REVISION=sha-<SHORT_SHA>-tag is not needed; use --to-tags
+#   rollback:  gcloud builds submit --config cloudbuild.promote.yaml --substitutions _TO_REVISION=<previous revision>,_PERCENT=100
+substitutions:
+  _REGION: europe-west1
+  _SERVICE: drivenet-api
+  _TO_TAG: ""
+  _TO_REVISION: ""
+  _PERCENT: "100"
+steps:
+  - id: shift-traffic
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        set -euo pipefail
+        if [ -n "${_TO_REVISION}" ]; then
+          gcloud run services update-traffic ${_SERVICE} --region=${_REGION} --to-revisions=${_TO_REVISION}=${_PERCENT}
+        elif [ -n "${_TO_TAG}" ]; then
+          gcloud run services update-traffic ${_SERVICE} --region=${_REGION} --to-tags=${_TO_TAG}=${_PERCENT}
+        else
+          echo "set _TO_TAG (promote) or _TO_REVISION (rollback)" >&2; exit 1
+        fi
+options:
+  logging: CLOUD_LOGGING_ONLY
