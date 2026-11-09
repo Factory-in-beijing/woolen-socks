@@ -19,6 +19,17 @@ resource "google_artifact_registry_repository" "images" {
   depends_on    = [google_project_service.apis]
 }
 
+# Native-mode Firestore. Rules and indexes are deployed with the Firebase CLI, not Terraform.
+# If the console already created "(default)", run: terraform import google_firestore_database.default "(default)"
+resource "google_firestore_database" "default" {
+  name                              = "(default)"
+  location_id                       = var.firestore_location
+  type                              = "FIRESTORE_NATIVE"
+  point_in_time_recovery_enablement = "POINT_IN_TIME_RECOVERY_ENABLED" # backups/PITR on (Firestore block)
+  deletion_policy                   = "ABANDON"
+  depends_on                        = [google_project_service.apis]
+}
+
 # Runtime identity of the API: least privilege (principle 15). Secret access is granted per secret when secrets are created.
 resource "google_service_account" "api" {
   account_id   = "drivenet-api"

@@ -1,0 +1,14 @@
+# Firebase App Hosting config for the web app (set Root directory = apps/web in the backend settings).
+runConfig:
+  cpu: 1
+  memoryMiB: 512
+  minInstances: 0
+  maxInstances: 10
+  concurrency: 80
+
+env:
+  # Public, build-time value: the Cloud Run API URL (terraform output api_url). Set it per backend/environment
+  # in the Firebase console or uncomment and fill in here. Never put secrets in this file (principle 15).
+  # - variable: NEXT_PUBLIC_API_BASE_URL
+  #   value: https://drivenet-api-xxxxx-ew.a.run.app
+  #   availability: [BUILD, RUNTIME]

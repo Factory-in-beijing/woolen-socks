@@ -23,3 +23,9 @@ variable "max_instances" {
   type    = number
   default = 10
 }
+
+variable "firestore_location" {
+  type        = string
+  default     = "eur3"
+  description = "Firestore location is permanent once created; pick deliberately (eur3 = EU multi-region, nam5 = US)."
+}

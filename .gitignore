@@ -14,3 +14,5 @@ playwright-report/
 test-results/
 .terraform/
 *.tfstate*
+*.tfvars
+!*.tfvars.example
