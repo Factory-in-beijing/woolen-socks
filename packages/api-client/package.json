@@ -1,0 +1,31 @@
+{
+  "name": "@drivenet/api-client",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./schema": "./src/generated/schema.d.ts",
+    "./openapi.yaml": "./openapi/v1.yaml"
+  },
+  "scripts": {
+    "generate": "openapi-typescript openapi/v1.yaml -o src/generated/schema.d.ts",
+    "generate:check": "pnpm generate && git diff --exit-code -- src/generated",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run --passWithNoTests",
+    "check:additive": "node src/cli/additive-check.ts"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "5.107.1",
+    "openapi-fetch": "0.17.0",
+    "openapi-react-query": "0.5.4",
+    "react": "19.3.1"
+  },
+  "devDependencies": {
+    "@drivenet/schemas": "workspace:*",
+    "@types/react": "19.2.2",
+    "openapi-typescript": "7.13.0",
+    "vitest": "5.1.0",
+    "yaml": "2.9.1"
+  }
+}

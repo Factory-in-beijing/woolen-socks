@@ -1,0 +1,5 @@
+# Copy to <env>.tfvars (git-ignored) — one GCP/Firebase project per environment.
+project_id         = "drivenet-staging"
+region             = "europe-west1"
+firestore_location = "eur3"
+api_image          = "europe-west1-docker.pkg.dev/drivenet-staging/drivenet/drivenet-api:bootstrap"

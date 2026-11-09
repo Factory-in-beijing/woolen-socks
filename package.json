@@ -7,8 +7,36 @@
   },
   "scripts": {
     "dev": "pnpm --filter @drivenet/web dev",
-    "build": "pnpm --filter @drivenet/web build",
+    "dev:api": "pnpm --filter @drivenet/api dev",
+    "emulators": "firebase emulators:start --project demo-drivenet",
+    "build": "pnpm -r --filter @drivenet/web --filter @drivenet/api build",
     "typecheck": "pnpm -r typecheck",
-    "test": "pnpm -r test"
-  }
+    "test": "pnpm -r test",
+    "test:integration": "pnpm --filter @drivenet/api test:integration",
+    "test:e2e": "pnpm --filter @drivenet/web test:e2e",
+    "test:load": "k6 run load/smoke.js",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "architecture": "depcruise apps packages --config .dependency-cruiser.cjs",
+    "api:generate": "pnpm --filter @drivenet/api-client generate",
+    "api:check": "pnpm --filter @drivenet/api-client generate:check && pnpm --filter @drivenet/api-client check:additive",
+    "gates": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm architecture && pnpm test && pnpm api:check"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.65.0",
+    "@types/node": "22.19.0",
+    "dependency-cruiser": "18.7.2",
+    "eslint": "10.14.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-import-x": "4.18.0",
+    "fast-check": "4.10.2",
+    "firebase-tools": "15.35.0",
+    "prettier": "3.9.10",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.72.1",
+    "vitest": "5.1.0"
+  },
+  "pnpm": {}
 }
