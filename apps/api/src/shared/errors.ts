@@ -38,6 +38,7 @@ const TITLES: Readonly<Record<ErrorCode, string>> = {
   slot_taken: "Slot taken",
   hold_expired: "Hold expired",
   invalid_transition: "Invalid transition",
+  idempotency_conflict: "Idempotency conflict",
   version_mismatch: "Version mismatch",
   rate_limited: "Rate limited",
   dependency_unavailable: "Dependency unavailable",

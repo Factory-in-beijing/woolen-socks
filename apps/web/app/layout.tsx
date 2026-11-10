@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Noto_Sans_Georgian } from "next/font/google";
 import { ka } from "@drivenet/i18n";
 import "@drivenet/ui/tokens.css";
+import "@drivenet/ui/components.css";
 import "./globals.css";
 import { Providers } from "./providers";
 

@@ -18,6 +18,7 @@ describe("error model (principle 13)", () => {
       slot_taken: 409,
       hold_expired: 409,
       invalid_transition: 409,
+      idempotency_conflict: 409,
       version_mismatch: 412,
       rate_limited: 429,
       dependency_unavailable: 503,
