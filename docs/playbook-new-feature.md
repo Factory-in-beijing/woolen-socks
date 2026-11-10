@@ -1,34 +1,34 @@
-# ახალი ფუნქციის აგება — ნაბიჯ-ნაბიჯ (ბირთვზე დაყრდნობით)
+# Building a new feature — step by step (on top of the kernel)
 
-წესი: ჯერ გეგმა (კოდი არა) → ტესტი → კოდი პატარა ნაბიჯებით → გეიტები (`pnpm gates`, `pnpm test:integration`).
-ბირთვი (`apps/api/src/shared`) უკვე გაკეთებულია — მოდული წერს მხოლოდ **ბიზნეს-წესებს**. იხ. ADR-0002.
+Rule: plan first (no code) → tests → code in small steps → gates (`pnpm gates`, `pnpm test:integration`).
+The kernel (`apps/api/src/shared`) already exists — a module writes only **business rules**. See ADR-0002.
 
-## 0. გეგმა (დაწერე პასუხში, სანამ კოდს შეეხები)
+## 0. Plan (write it in your reply before touching code)
 
-ინვარიანტი · ჩავარდნები · რომელი მოთხოვნები/ინდექსები · რომელი მოდული ფლობს · დაშვებები · ღია კითხვები (#1–#19 `architecture-digest.md`-დან).
+Invariant · failure cases · which queries/indexes · which module owns it · assumptions · open questions (#1–#19 in `architecture-digest.md`).
 
-## 1. კონტრაქტი ჯერ
+## 1. Contract first
 
-`packages/api-client/openapi/v1.yaml` → endpoint (მხოლოდ დამატებით; POST/PUT → `Idempotency-Key` პარამეტრი `$ref`) → `pnpm api:generate` → `pnpm api:check`.
+`packages/api-client/openapi/v1.yaml` → endpoint (addition only; POST/PUT → `$ref` the `IdempotencyKey` parameter) → `pnpm api:generate` → `pnpm api:check`.
 
-## 2. მოდულის ფენები (`apps/api/src/modules/<m>/`)
+## 2. Module layers (`apps/api/src/modules/<m>/`)
 
 ```
-domain/          სუფთა TS: Value Objects, state machine (defineStateMachine), წესები. SDK-ის გარეშე.
-application/     use case = ერთი ტრანზაქცია:  uow/runWithJobs(deps, async (tx, enqueue) => { read…; write…; enqueue(job) })
-infrastructure/  repository → Firestore (asFirestoreTx(tx)); ჯერ ყველა წაკითხვა, მერე ჩაწერა
+domain/          pure TS: Value Objects, state machine (defineStateMachine), rules. No SDKs.
+application/     use case = one transaction:  uow/runWithJobs(deps, async (tx, enqueue) => { read…; write…; enqueue(job) })
+infrastructure/  repository → Firestore (asFirestoreTx(tx)); all reads first, then writes
 http/            controller: principal → resolveContext → authorize(table, ctx, action, resource) → zod → use case
-definition.ts    ვადები/ნაბიჯები/ტექსტები (declarative) ან config-დოკუმენტი (ვერსიული)
-index.ts         ერთადერთი საჯარო ინტერფეისი
+definition.ts    deadlines/steps/texts (declarative) or a config document (versioned)
+index.ts         the only public interface
 ```
 
-`pnpm architecture` ამას ამოწმებს (ფენების მიმართულება, domain-ის სიწმინდე, Firestore მხოლოდ infrastructure-ში).
+`pnpm architecture` enforces this (layer direction, domain purity, Firestore only in infrastructure).
 
-## 3. ჩაწერის endpoint-ის ჩონჩხი
+## 3. Write-endpoint skeleton
 
 ```ts
 app.post("/v1/…", async (req, reply) => {
-  const principal = await auth.principalOf(req); // 401 თუ ტოკენი არასწორია
+  const principal = await auth.principalOf(req); // 401 if the token is invalid
   const ctx = await resolveContext(
     memberships,
     principal,
@@ -42,30 +42,32 @@ app.post("/v1/…", async (req, reply) => {
     { principalId, route: "POST /v1/…", key },
     body,
     () => createBooking(deps, ctx, body),
-  ); // runWithJobs შიგნით
+  ); // runWithJobs inside
   return reply.status(result.status).send(result.body);
 });
 ```
 
-## 4. რა როდის გამოიყენო
+(Illustrative: `principalId` comes from `principal`, which must be a signed-in user at that point.)
 
-| საჭიროება                                        | ინსტრუმენტი                                                                                               |
-| ------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
-| „ერთხელ“ / უნიკალური (slot, payout, application) | განსაზღვრული ID + `tx.create` (ბირთვი: `FirestoreJobStore.create`-ის მსგავსად)                            |
-| გვერდითი ეფექტი (SMS, გადარიცხვა, ვადის გასვლა)  | `enqueue({ id: "payout:<lessonId>", type, payload, runAt? })` + handler `JOB_HANDLERS`-ში (`platform.ts`) |
-| სტატუსი                                          | `defineStateMachine` — თავისუფალი UPDATE არა                                                              |
-| ფული                                             | `Tetri`, `allocate`, `balancedTransaction`; შესწორება — `reversalOf`                                      |
-| ვადა/ზღვარი/ტექსტი                               | `definition.ts` ან config + `resolveEffective`; ჩანაწერზე ვერსია                                          |
-| სია                                              | `PageQuerySchema` + `encodeCursor`/`decodeCursor`                                                         |
-| დრო                                              | `Clock` (არასდროს `new Date()` domain-ში)                                                                 |
-| გარე სისტემა                                     | port + adapter + fake ტესტისთვის (timeout, დუბლიკატი, გადალაგება)                                         |
+## 4. What to use when
 
-## 5. ეკრანი (ვები; მობილურზე იგივე hooks)
+| Need                                        | Tool                                                                                                        |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| "Once" / unique (slot, payout, application) | defined ID + `tx.create` (like `FirestoreJobStore.create`)                                                  |
+| Side effect (SMS, payout, expiry)           | `enqueue({ id: "payout:<lessonId>", type, payload, runAt? })` + a handler in `JOB_HANDLERS` (`platform.ts`) |
+| Status                                      | `defineStateMachine` — no free-form UPDATE                                                                  |
+| Money                                       | `Tetri`, `allocate`, `balancedTransaction`; corrections via `reversalOf`                                    |
+| Deadline/limit/text                         | `definition.ts` or config + `resolveEffective`; store the version on the record                             |
+| Lists                                       | `PageQuerySchema` + `encodeCursor`/`decodeCursor`                                                           |
+| Time                                        | `Clock` (never `new Date()` in domain)                                                                      |
+| External system                             | port + adapter + a fake for tests (timeout, duplicate, reordering)                                          |
 
-`apps/web/features/<name>/{components,hooks,api,model}`; მონაცემი — `api.useQuery/useMutation` (`data/api.ts`);
-`toScreenState(query, isEmpty)` → `<ScreenStateView state={…}>`; ფორმა — react-hook-form + zod (`@drivenet/schemas`) + `applyServerFieldErrors`;
-ჩაწერა — `useIdempotencyKey()` + `<Button loading={isPending}>`; შეცდომა — `behaviorFor(error.problem.code)`; ტექსტი — `ka.*` (`packages/i18n`).
+## 5. Screen (web; mobile reuses the hooks)
 
-## 6. არასდროს
+`apps/web/features/<name>/{components,hooks,api,model}`; data via `api.useQuery/useMutation` (`data/api.ts`);
+`toScreenState(query, isEmpty)` → `<ScreenStateView state={…}>`; forms with react-hook-form + zod (`@drivenet/schemas`) + `applyServerFieldErrors`;
+writes with `useIdempotencyKey()` + `<Button loading={isPending}>`; errors via `behaviorFor(error.problem.code)`; text from `messages.*` (`packages/i18n`).
 
-სტატუსის თავისუფალი UPDATE · გარე ზარი ტრანზაქციაში · ფულის ჩანაწერის შეცვლა/წაშლა · კლიენტის პირდაპირი წვდომა ბაზაზე · ფასის/უფლების გამოთვლა კლიენტზე · PII/ტოკენი/კოდი ლოგში · ციფრი (ვადა/ლიმიტი) განმარტების გარეშე კოდში.
+## 6. Never
+
+Free-form status UPDATE · an external call inside a transaction · editing or deleting a money record · direct client access to the database · computing price/permission on the client · PII/tokens/codes in logs · a number (deadline/limit) in code without a definition.

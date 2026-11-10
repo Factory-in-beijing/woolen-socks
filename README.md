@@ -1,15 +1,17 @@
 # DriveNet
 
-pnpm monorepo (TypeScript strict). ვები: `apps/web` (Next.js) · ბექენდი: `apps/api` (Cloud Run, Fastify) · საერთო: `packages/{schemas,api-client,i18n,ui}`.
+pnpm monorepo (TypeScript strict). Web: `apps/web` (Next.js) · backend: `apps/api` (Cloud Run, Fastify) · shared: `packages/{schemas,api-client,i18n,ui}`.
 
 ```bash
 pnpm install
-pnpm dev          # ვები
+pnpm dev          # web
 pnpm dev:api      # API (:8080)
-pnpm emulators    # Firebase Emulator Suite (Java საჭიროა)
+pnpm emulators    # Firebase Emulator Suite (needs Java)
 pnpm gates        # format · lint · typecheck · architecture · tests · api contract
 ```
 
-წესები და არქიტექტურა: [`CLAUDE.md`](CLAUDE.md) · [`docs/architecture-digest.md`](docs/architecture-digest.md) · [`docs/adr/`](docs/adr).
+Rules and architecture: [`CLAUDE.md`](CLAUDE.md) · [`docs/architecture-digest.md`](docs/architecture-digest.md) · [`docs/adr/`](docs/adr) · [`docs/setup-firebase.md`](docs/setup-firebase.md).
 
-Vercel-ზე იმპორტისას: **Root Directory = `apps/web`** (Framework: Next.js). pnpm workspace ავტომატურად ამოიცნობა.
+The first release is English-only (code, docs and UI).
+
+When importing into Vercel: **Root Directory = `apps/web`** (Framework: Next.js). The pnpm workspace is detected automatically.

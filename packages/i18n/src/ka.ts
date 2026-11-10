@@ -1,6 +1,10 @@
 import type { ErrorCode } from "@drivenet/schemas";
+import type { Messages } from "./en.ts";
 
-/** Georgian text catalog. UI text lives here, never inline in components (FE base). */
+/**
+ * Georgian translation — NOT used in the first (English) release. Kept in sync with `en` by the compiler
+ * (`satisfies Messages`) and by a parity test, so enabling Georgian later is a configuration change.
+ */
 export const ka = {
   brand: "DriveNet",
   nav: {
@@ -39,6 +43,4 @@ export const ka = {
     serverTime: "სერვერის დრო (თბილისი)",
     sampleAmount: "თანხის ფორმატი",
   },
-} as const;
-
-export type Catalog = typeof ka;
+} as const satisfies Messages;

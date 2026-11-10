@@ -1,38 +1,40 @@
-# ADR-0001 — საბაზო სტეკი და ინსტრუმენტები
+# ADR-0001 — Baseline stack and tooling
 
-სტატუსი: მიღებულია (საწყისი, Phase 0) · თარიღი: 2026-11-08 · წყარო: Architecture v6 (გვ. 1–26, დანართი)
+Status: accepted (initial, Phase 0) · Date: 2026-11-08 · Source: Architecture v6 (pp. 1–26, appendix)
 
-## კონტექსტი
+## Context
 
-დოკუმენტი განსაზღვრავს არქიტექტურას (Cloud Run, Firestore, Next.js, React Native, OpenAPI, Terraform, Cloud Build…), მაგრამ არ ირჩევს კონკრეტულ ბიბლიოთეკებს. Phase 0 მათ არჩევას მოითხოვს. წესი: უმარტივესი გამოსავალი (პრინციპი 17); ახალი სერვისი — ცალკე ADR.
+The document defines the architecture (Cloud Run, Firestore, Next.js, React Native, OpenAPI, Terraform, Cloud Build…) but does not choose concrete libraries. Phase 0 requires choosing them. Rule: simplest solution (principle 17); a new service needs its own ADR.
 
-## გადაწყვეტილებები
+## Decisions
 
-| თემა               | არჩევანი                                                                                  | რატომ / ალტერნატივა                                                                                                                                     |
-| ------------------ | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| პაკეტების მენეჯერი | pnpm workspaces (Node 22)                                                                 | უკვე repo-შია; ცალკე build-ორკესტრატორი (Turborepo/Nx) ჯერ არ გვჭირდება — დავამატებთ, როცა `pnpm -r` ნელი გახდება                                       |
-| API ფრეიმვორქი     | **Fastify 5**                                                                             | სწრაფი, ჩაშენებული pino, მარტივი hook-ები traceId-სა და problem+json-ისთვის. NestJS არა: DI-ფრეიმვორქი მოდულურ მონოლითს ზედმეტ აბსტრაქციას ამატებს (17) |
-| API build          | esbuild bundle (workspace პაკეტები შიგნით; `firebase-admin`, `@google-cloud/tasks` გარეთ) | tsc-ის ემიტი Bundler-resolution-ზე ESM-ში არ გაეშვებოდა; ერთი ფაილი = მარტივი image                                                                     |
-| კონტრაქტი          | OpenAPI 3.1 (`packages/api-client/openapi/v1.yaml`) → `openapi-typescript`                | პრინციპი 1; ტიპები გენერირდება და commit-დება (`generate:check` გეიტი)                                                                                  |
-| კლიენტი            | `openapi-fetch` + `openapi-react-query` (TanStack Query)                                  | თხელი, ტიპიზებული, იგივე ორივე ზედაპირზე; ცალკე codegen-ის (orval) ტვირთი არა                                                                           |
-| ვალიდაცია          | zod 4 (`packages/schemas`)                                                                | საზღვარზე (პრინციპი 19); ფორმა=სერვერის ვალიდაცია ერთ სქემაზე                                                                                           |
-| ტესტები            | Vitest + fast-check (property-based, M4 allocation); Playwright (e2e); k6 (load)          | პრინციპი 21 · CI-ის გეიტები                                                                                                                             |
-| მონაცემთა ტესტი    | Firebase Emulator Suite + `@firebase/rules-unit-testing@5`                                | v6 მოითხოვს Node ≥24.12; ჩვენ Node 22-ზე ვართ, ამიტომ v5 + `firebase@12`. Node 24-ზე გადასვლისას განახლდეს                                              |
-| არქიტექტურის გეიტი | dependency-cruiser (`.dependency-cruiser.cjs`)                                            | მოდულის საზღვრები, ფენების მიმართულება, domain სიწმინდე, Firestore მხოლოდ infrastructure-ში, კლიენტები backend-ს არ ეხებიან                             |
-| სტილი              | ESLint (flat, typescript-eslint strict, no-any) + Prettier                                | პრინციპი 19                                                                                                                                             |
-| ლოგი               | pino, `severity`, redact PII/ტოკენი/კოდი, `traceId`                                       | პრინციპები 15, 23                                                                                                                                       |
-| ინფრა              | Terraform (მინიმალური) + Cloud Build                                                      | PDF დანართი „CI/CD და Ops“                                                                                                                              |
-| CI                 | **Cloud Build** (`cloudbuild.yaml`, `cloudbuild.promote.yaml`)                            | PDF ასე განსაზღვრავს; GitHub Actions არ ვამატებთ                                                                                                        |
+| Topic             | Choice                                                                                                                                      | Why / alternative                                                                                                                               |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Package manager   | pnpm workspaces (Node 22)                                                                                                                   | Already in the repo; a separate build orchestrator (Turborepo/Nx) is not needed yet — add it when `pnpm -r` gets slow                           |
+| API framework     | **Fastify 5**                                                                                                                               | Fast, built-in pino, simple hooks for traceId and problem+json. Not NestJS: a DI framework adds needless abstraction to a modular monolith (17) |
+| API build         | esbuild bundle (workspace packages inlined; `firebase-admin`, `@google-cloud/tasks` external)                                               | tsc output with Bundler resolution would not run as ESM; one file = a simple image                                                              |
+| Contract          | OpenAPI 3.1 (`packages/api-client/openapi/v1.yaml`) → `openapi-typescript`                                                                  | Principle 1; types are generated and committed (`generate:check` gate)                                                                          |
+| Client            | `openapi-fetch` + `openapi-react-query` (TanStack Query)                                                                                    | Thin, typed, identical on every surface; no separate codegen (orval) burden                                                                     |
+| Validation        | zod 4 (`packages/schemas`)                                                                                                                  | At the boundary (principle 19); form validation = server validation from one schema                                                             |
+| Tests             | Vitest + fast-check (property-based, e.g. M4 allocation); Playwright (e2e); k6 (load)                                                       | Principle 21 · CI gates                                                                                                                         |
+| Data tests        | Firebase Emulator Suite + `@firebase/rules-unit-testing@5`                                                                                  | v6 requires Node ≥24.12; we are on Node 22, so v5 + `firebase@12`. Upgrade when moving to Node 24                                               |
+| Architecture gate | dependency-cruiser (`.dependency-cruiser.cjs`)                                                                                              | Module boundaries, layer direction, domain purity, Firestore only in infrastructure, clients never touch the backend                            |
+| Style             | ESLint (flat, typescript-eslint strict, no-any) + Prettier                                                                                  | Principle 19                                                                                                                                    |
+| Logging           | pino, `severity`, redacted PII/tokens/codes, `traceId`                                                                                      | Principles 15, 23                                                                                                                               |
+| Infra             | Terraform (minimal) + Cloud Build                                                                                                           | PDF appendix "CI/CD and Ops"                                                                                                                    |
+| CI                | **Cloud Build** (`cloudbuild.yaml`, `cloudbuild.promote.yaml`)                                                                              | Defined that way by the PDF; no GitHub Actions                                                                                                  |
+| Language          | **English-only first release**: code, docs, UI. `packages/i18n` has `en` (active) and `ka` (kept in sync by the compiler and a parity test) | Product decision (2026-11-10). Business rules stay Georgian-market: Asia/Tbilisi, GEL, +995                                                     |
 
-## დოკუმენტიდან გადახვევა / დამატებები
+## Deviations from / additions to the document
 
-- `internal_error` (500) შეცდომის კოდი დამატებულია: დოკუმენტის სია არ ფარავს ბაგს, ხოლო ყველა პასუხი problem+json უნდა იყოს (პრინციპი 13). მხოლოდ დამატებაა.
-- `429 rate_limited` → `retryable=false` (დოკუმენტი retryable-ად მხოლოდ 503-ებს ასახელებს). თუ ბიზნესი სხვაგვარად გადაწყვეტს — ერთი ცხრილი `packages/schemas/src/errors.ts`.
-- Idempotency-Key კონტრაქტში `required` პარამეტრია ყოველ POST/PUT-ზე (ტიპები აიძულებს გამომძახებელს); კლიენტი მას თავად არ აგენერირებს, რომ retry-ზე გასაღები არ შეიცვალოს.
+- Error code `internal_error` (500) added: the document's list does not cover a bug, yet every response must be problem+json (principle 13). Addition only.
+- `429 rate_limited` → `retryable=false` (the document marks only the 503s as retryable). If the business decides otherwise, it is one table in `packages/schemas/src/errors.ts`.
+- `Idempotency-Key` is a `required` parameter in the contract on every POST/PUT (types force callers to pass it); the client does not generate it, so the key does not change on retry.
+- English locale `en-GB` for dates (day-first, 24h) and `₾` narrow symbol for money — a presentation default, easy to change in `packages/i18n/src/format.ts`.
 
-## ღია (ახალი ADR სჭირდება)
+## Open (need a new ADR)
 
-1. **შესვლა: ტელეფონი+პაროლი** — Firebase Auth-ს ჩაშენებულად არა აქვს (B1): custom token თუ სინთეტიკური email. M1-მდე.
-2. მობილურის build: EAS/Fastlane, Crashlytics ზღვარი (M-5).
-3. ძველი აპის ვერსიების მხარდაჭერის ვადა.
-4. Node 24-ზე გადასვლა (ტესტის ბიბლიოთეკა v6).
+1. **Sign-in with phone + password** — Firebase Auth has no built-in support (B1): custom token vs synthetic email. Before M1.
+2. Mobile build: EAS/Fastlane, Crashlytics threshold (M-5).
+3. Support window for old app versions.
+4. Move to Node 24 (test library v6).

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Noto_Sans_Georgian } from "next/font/google";
-import { ka } from "@drivenet/i18n";
+import { messages } from "@drivenet/i18n";
 import "@drivenet/ui/tokens.css";
 import "@drivenet/ui/components.css";
 import "./globals.css";
@@ -15,13 +15,13 @@ const notoSansGeorgian = Noto_Sans_Georgian({
 });
 
 export const metadata: Metadata = {
-  title: ka.brand,
-  description: ka.landing.status,
+  title: messages.brand,
+  description: messages.landing.status,
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ka" className={notoSansGeorgian.variable}>
+    <html lang="en" className={notoSansGeorgian.variable}>
       <body>
         <Providers>{children}</Providers>
       </body>

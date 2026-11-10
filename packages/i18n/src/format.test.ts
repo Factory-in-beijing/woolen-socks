@@ -8,7 +8,7 @@ test("tetri rejects fractional amounts", () => {
 
 test("formatMoney renders integer tetri as lari with two decimals", () => {
   const text = formatMoney(tetri(12550));
-  assert.match(text, /125,50/);
+  assert.match(text, /125\.50/);
   assert.match(text, /₾|GEL/);
 });
 

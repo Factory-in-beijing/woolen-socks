@@ -10,7 +10,7 @@ export class ApiError extends Error {
   }
 }
 
-/** What a screen should do for an error. Text comes from the i18n catalog (`ka.errors[code]`), never from the server. */
+/** What a screen should do for an error. Text comes from the i18n catalog (`messages.errors[code]` in @drivenet/i18n), never from the server. */
 export type UiBehavior =
   | { readonly kind: "fix_fields" }
   | { readonly kind: "sign_in" }
