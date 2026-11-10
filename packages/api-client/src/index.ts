@@ -44,3 +44,4 @@ export { ApiError, behaviorFor, toApiError, type UiBehavior } from "./errors.ts"
 export { toScreenState, type QueryLike, type ScreenState } from "./screen-state.ts";
 export { applyServerFieldErrors } from "./forms.ts";
 export { useIdempotencyKey } from "./idempotency-key.ts";
+export { QUERY_DEFAULTS, retryDelayMs } from "./query-defaults.ts";

@@ -14,6 +14,8 @@ describe("public surface of @drivenet/api-client", () => {
       "toScreenState",
       "applyServerFieldErrors",
       "useIdempotencyKey",
+      "QUERY_DEFAULTS",
+      "retryDelayMs",
     ]) {
       expect(api, name).toHaveProperty(name);
     }

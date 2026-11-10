@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { fixedClock } from "../clock.ts";
+import { workspaceId } from "../domain/ids.ts";
 import { createLogger } from "../logger.ts";
 import { Writable } from "node:stream";
 import type { Tx, UnitOfWork } from "../domain/tx.ts";
@@ -59,7 +60,9 @@ describe("enqueue = job record in the business transaction, dispatch after commi
   it("creates a pending job and dispatches it after the transaction", async () => {
     const s = setup();
     expect(await enqueueOne(s)).toBe("business-result");
-    expect(s.store.all()).toMatchObject([{ id: "payout:lesson-1", state: "pending", attempts: 0 }]);
+    expect(s.store.all()).toMatchObject([
+      { id: "payout:lesson-1", state: "pending", attempts: 0, workspaceId: null },
+    ]);
     expect(s.dispatcher.dispatched.map((j) => j.id)).toEqual(["payout:lesson-1"]);
     expect(s.store.all()[0]?.dispatchedAt).toEqual(new Date(T0));
   });
@@ -85,6 +88,16 @@ describe("enqueue = job record in the business transaction, dispatch after commi
     expect(await sweepUndispatched(s.deps, { olderThanMs: 60_000, limit: 10 })).toBe(1);
     expect(s.dispatcher.dispatched).toHaveLength(1);
     expect(s.store.all()[0]?.dispatchedAt).not.toBeNull();
+  });
+});
+
+describe("owner field (Firestore rule: root collection + owner field)", () => {
+  it("a job can carry the workspace that owns it", async () => {
+    const s = setup();
+    await runWithJobs(s.deps, async (_tx, enqueue) =>
+      enqueue({ id: "j-ws", type: "payout", payload: {}, workspaceId: workspaceId("ws-1") }),
+    );
+    expect(s.store.all()[0]?.workspaceId).toBe("ws-1");
   });
 });
 

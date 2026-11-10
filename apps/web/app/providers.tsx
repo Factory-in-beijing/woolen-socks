@@ -1,5 +1,6 @@
 "use client";
 
+import { QUERY_DEFAULTS, retryDelayMs } from "@drivenet/api-client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState, type ReactNode } from "react";
 
@@ -10,9 +11,9 @@ export function Providers({ children }: { children: ReactNode }) {
       new QueryClient({
         defaultOptions: {
           queries: {
-            retry: 2,
-            retryDelay: (n) => Math.min(1000 * 2 ** n, 8000),
-            staleTime: 30_000,
+            retry: QUERY_DEFAULTS.readRetries,
+            retryDelay: retryDelayMs,
+            staleTime: QUERY_DEFAULTS.staleMs,
           },
           mutations: { retry: 0 },
         },

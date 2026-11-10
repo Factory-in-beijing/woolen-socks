@@ -1,15 +1,17 @@
+import type { Tetri } from "@drivenet/schemas";
+
 /**
  * The single formatter for time and money (FE base: "one formatter — Asia/Tbilisi, tetri → lari").
  * Instants are stored and transported in UTC; business dates are always shown in Asia/Tbilisi,
  * regardless of the device time zone (principle 14).
  */
 export const BUSINESS_TIME_ZONE = "Asia/Tbilisi";
-export const LOCALE = "ka-GE";
+/** English (first release). Business time stays Asia/Tbilisi and money stays GEL regardless of UI language. */
+export const LOCALE = "en-GB";
 
 const TETRI_PER_LARI = 100;
 
-/** Money amount in integer tetri (principle 10). Branded so a plain number cannot be passed by mistake. */
-export type Tetri = number & { readonly __brand: "Tetri" };
+export type { Tetri };
 
 export function tetri(amount: number): Tetri {
   if (!Number.isSafeInteger(amount)) {
@@ -21,11 +23,12 @@ export function tetri(amount: number): Tetri {
 const moneyFormatter = new Intl.NumberFormat(LOCALE, {
   style: "currency",
   currency: "GEL",
+  currencyDisplay: "narrowSymbol",
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
 });
 
-/** Formats integer tetri as lari, e.g. 12550 → "125,50 ₾". Division happens only at the display edge. */
+/** Formats integer tetri as lari, e.g. 12550 → "₾125.50". Division happens only at the display edge. */
 export function formatMoney(amount: Tetri): string {
   return moneyFormatter.format(amount / TETRI_PER_LARI);
 }

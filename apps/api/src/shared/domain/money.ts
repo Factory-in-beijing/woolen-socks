@@ -1,8 +1,8 @@
 import { AppError } from "../errors.ts";
-import type { Brand } from "./ids.ts";
+import type { Tetri } from "@drivenet/schemas";
 
 /** Money is integer tetri (1 lari = 100 tetri). Floating point never touches an amount (principle 10). */
-export type Tetri = Brand<number, "Tetri">;
+export type { Tetri };
 
 export function tetri(amount: number): Tetri {
   if (!Number.isSafeInteger(amount)) {

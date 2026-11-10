@@ -60,6 +60,49 @@ module.exports = {
       to: { path: `${MODULE}http/` },
     },
     {
+      name: "infrastructure-not-to-application",
+      severity: "error",
+      comment:
+        "Infrastructure implements ports of domain/application; it never calls use cases (domain <- application <- infrastructure).",
+      from: { path: `${MODULE}infrastructure/` },
+      to: { path: `${MODULE}application/` },
+    },
+    {
+      name: "http-not-to-infrastructure",
+      severity: "error",
+      comment:
+        "Controllers go through a use case (http -> application -> domain); they never touch repositories directly.",
+      from: { path: `${MODULE}http/` },
+      to: { path: `${MODULE}infrastructure/` },
+    },
+    {
+      name: "shared-domain-no-outer-layers",
+      severity: "error",
+      comment:
+        "The kernel's domain (ids, money, ledger, state machine...) is pure: no I/O, HTTP, auth, jobs or adapters (principles 18, 20).",
+      from: { path: "^apps/api/src/shared/domain/", pathNot: "\\.test\\.ts$" },
+      to: { path: "^apps/api/src/shared/(infrastructure|http|jobs|idempotency|auth|pagination)/" },
+    },
+    {
+      name: "shared-domain-no-npm",
+      severity: "error",
+      comment:
+        "No third-party runtime package in the kernel's domain (only the shared @drivenet/schemas types).",
+      from: { path: "^apps/api/src/shared/domain/", pathNot: "\\.test\\.ts$" },
+      to: {
+        dependencyTypes: ["npm", "npm-dev", "npm-peer", "npm-optional"],
+        pathNot: "(^packages/schemas/|node_modules/@drivenet/)",
+      },
+    },
+    {
+      name: "shared-core-framework-free",
+      severity: "error",
+      comment:
+        "Auth/idempotency/job logic depends on ports, not on Fastify or Google SDKs; those live in shared/http and shared/infrastructure (principle 18).",
+      from: { path: "^apps/api/src/shared/(auth|idempotency|jobs)/", pathNot: "\\.test\\.ts$" },
+      to: { path: "node_modules/(fastify|firebase-admin|@google-cloud|google-auth-library)" },
+    },
+    {
       name: "firestore-only-in-infrastructure",
       severity: "error",
       comment:

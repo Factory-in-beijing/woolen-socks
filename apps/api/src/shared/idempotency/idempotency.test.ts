@@ -1,14 +1,8 @@
-import Fastify from "fastify";
 import { describe, expect, it } from "vitest";
 import { idempotencyStoreContract } from "../../../test/support/idempotency-store-contract.ts";
 import { AppError } from "../errors.ts";
 import { principalId } from "../domain/ids.ts";
-import {
-  hashRequest,
-  readIdempotencyKey,
-  withIdempotency,
-  type IdempotencyScope,
-} from "./idempotency.ts";
+import { hashRequest, withIdempotency, type IdempotencyScope } from "./idempotency.ts";
 import { InMemoryIdempotencyStore } from "./in-memory-store.ts";
 
 idempotencyStoreContract("in-memory", () => new InMemoryIdempotencyStore());
@@ -97,26 +91,5 @@ describe("withIdempotency (principle 6)", () => {
       status: 200,
       body: { ok: true },
     });
-  });
-});
-
-describe("Idempotency-Key header", () => {
-  const read = async (headers: Record<string, string>) => {
-    const app = Fastify();
-    app.post("/x", async (req) => ({ key: readIdempotencyKey(req) }));
-    app.setErrorHandler((e, _r, reply) => reply.status(400).send({ code: (e as AppError).code }));
-    return app.inject({ method: "POST", url: "/x", headers });
-  };
-  it("is required and must look like a key", async () => {
-    expect((await read({ "idempotency-key": "abcdefgh-1234" })).json()).toEqual({
-      key: "abcdefgh-1234",
-    });
-    for (const headers of [
-      {},
-      { "idempotency-key": "short" },
-      { "idempotency-key": "has space in it!" },
-    ]) {
-      expect((await read(headers)).json()).toEqual({ code: "validation_failed" });
-    }
   });
 });

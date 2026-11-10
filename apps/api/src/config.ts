@@ -14,6 +14,8 @@ const EnvSchema = z
 
     // Operational parameters (principle 12: not buried in code). Defaults are working assumptions, not product rules;
     // JOB_MAX_ATTEMPTS must match the Cloud Tasks queue retry_config in Terraform.
+    // Upper bound for a Cloud Tasks call (principle 22). Working assumption.
+    TASKS_TIMEOUT_MS: z.coerce.number().int().min(100).default(10_000),
     JOB_MAX_ATTEMPTS: z.coerce.number().int().min(1).default(8),
     JOB_LEASE_SECONDS: z.coerce.number().int().min(1).default(300),
     JOB_SWEEP_AFTER_SECONDS: z.coerce.number().int().min(1).default(60),

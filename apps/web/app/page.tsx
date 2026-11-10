@@ -1,4 +1,4 @@
-import { BUSINESS_TIME_ZONE, formatDateTime, formatMoney, ka, tetri } from "@drivenet/i18n";
+import { BUSINESS_TIME_ZONE, formatDateTime, formatMoney, messages, tetri } from "@drivenet/i18n";
 
 // Rendered per request so the server time below proves the deployment is live.
 export const dynamic = "force-dynamic";
@@ -12,12 +12,12 @@ export default function LandingPage() {
     <>
       <header className="header">
         <a href="/" className="logo">
-          {ka.brand}
+          {messages.brand}
         </a>
-        <nav className="nav" aria-label={ka.nav.menu}>
+        <nav className="nav" aria-label={messages.nav.menu}>
           {/* STU-02 sign-in is not built yet; the link target is reserved. */}
           <a href="/sign-in" className="button button--primary">
-            {ka.nav.signIn}
+            {messages.nav.signIn}
           </a>
         </nav>
       </header>
@@ -25,14 +25,14 @@ export default function LandingPage() {
       <main className="main">
         <section className="card" aria-labelledby="status">
           <h1 id="status" className="status">
-            {ka.landing.status}
+            {messages.landing.status}
           </h1>
-          <dl className="facts" aria-label={ka.system.buildInfo}>
-            <dt>{ka.system.serverTime}</dt>
+          <dl className="facts" aria-label={messages.system.buildInfo}>
+            <dt>{messages.system.serverTime}</dt>
             <dd>{formatDateTime(new Date())}</dd>
-            <dt>{ka.system.timeZone}</dt>
+            <dt>{messages.system.timeZone}</dt>
             <dd>{BUSINESS_TIME_ZONE}</dd>
-            <dt>{ka.system.sampleAmount}</dt>
+            <dt>{messages.system.sampleAmount}</dt>
             <dd>{formatMoney(SAMPLE_AMOUNT)}</dd>
             <dt>Commit</dt>
             <dd>{commit}</dd>

@@ -1,4 +1,5 @@
 import type { Firestore, Timestamp } from "firebase-admin/firestore";
+import type { WorkspaceId } from "../domain/ids.ts";
 import type { Tx } from "../domain/tx.ts";
 import type { Job, JobState } from "../jobs/job.ts";
 import type { JobStore } from "../jobs/ports.ts";
@@ -9,6 +10,7 @@ const COLLECTION = "jobs";
 interface JobDoc {
   type: string;
   payload: Record<string, unknown>;
+  workspaceId?: string | null;
   state: JobState;
   attempts: number;
   createdAt: Timestamp;
@@ -22,6 +24,8 @@ const toJob = (id: string, d: JobDoc): Job => ({
   id,
   type: d.type,
   payload: d.payload,
+  // Documents written before the field existed read as null (schema evolution: optional + default).
+  workspaceId: (d.workspaceId ?? null) as WorkspaceId | null,
   state: d.state,
   attempts: d.attempts,
   createdAt: d.createdAt.toDate(),
@@ -34,6 +38,7 @@ const toJob = (id: string, d: JobDoc): Job => ({
 const toDoc = (job: Job) => ({
   type: job.type,
   payload: { ...job.payload },
+  workspaceId: job.workspaceId,
   state: job.state,
   attempts: job.attempts,
   createdAt: job.createdAt,

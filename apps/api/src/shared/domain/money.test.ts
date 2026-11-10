@@ -1,8 +1,14 @@
 import fc from "fast-check";
 import { describe, expect, it } from "vitest";
+import type { Tetri as SharedTetri } from "@drivenet/schemas";
 import { add, allocate, isZero, negate, subtract, tetri } from "./money.ts";
 
 describe("Money (principle 10): integer tetri only", () => {
+  it("is the same Tetri type that i18n and clients use (single definition)", () => {
+    const shared: SharedTetri = tetri(5);
+    expect(shared).toBe(5);
+  });
+
   it("rejects fractions, NaN and unsafe integers", () => {
     expect(() => tetri(1.5)).toThrow();
     expect(() => tetri(Number.NaN)).toThrow();
