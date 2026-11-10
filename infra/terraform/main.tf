@@ -56,6 +56,26 @@ resource "google_cloud_tasks_queue" "jobs" {
   depends_on = [google_project_service.apis]
 }
 
+data "google_project" "this" {}
+
+locals {
+  # Cloud Run's deterministic URL; also the OIDC audience for /internal/jobs.
+  api_url = "https://drivenet-api-${data.google_project.this.number}.${var.region}.run.app"
+}
+
+# Identity that Cloud Tasks and Cloud Scheduler present when calling /internal/jobs (verified in the service).
+resource "google_service_account" "invoker" {
+  account_id   = "drivenet-invoker"
+  display_name = "DriveNet job invoker (Tasks/Scheduler)"
+}
+
+# The API creates tasks that run "as" the invoker, so it needs actAs on it (and nothing broader).
+resource "google_service_account_iam_member" "api_acts_as_invoker" {
+  service_account_id = google_service_account.invoker.name
+  role               = "roles/iam.serviceAccountUser"
+  member             = "serviceAccount:${google_service_account.api.email}"
+}
+
 resource "google_cloud_run_v2_service" "api" {
   name     = "drivenet-api"
   location = var.region
@@ -69,6 +89,18 @@ resource "google_cloud_run_v2_service" "api" {
     }
     containers {
       image = var.api_image
+      env {
+        name  = "SERVICE_URL"
+        value = local.api_url
+      }
+      env {
+        name  = "TASKS_QUEUE_PATH"
+        value = google_cloud_tasks_queue.jobs.id
+      }
+      env {
+        name  = "TASKS_INVOKER_SA"
+        value = google_service_account.invoker.email
+      }
       resources {
         limits = { cpu = "1", memory = "512Mi" }
       }
@@ -88,4 +120,67 @@ resource "google_cloud_run_v2_service_iam_member" "public" {
   location = var.region
   role     = "roles/run.invoker"
   member   = "allUsers"
+}
+
+# Sweeper: Scheduler (Asia/Tbilisi) re-dispatches jobs whose Cloud Task was never created (principle 8).
+resource "google_cloud_scheduler_job" "job_sweep" {
+  name      = "job-sweep"
+  region    = var.region
+  schedule  = var.job_sweep_schedule
+  time_zone = "Asia/Tbilisi"
+
+  http_target {
+    http_method = "POST"
+    uri         = "${local.api_url}/internal/jobs/sweep"
+    oidc_token {
+      service_account_email = google_service_account.invoker.email
+      audience              = local.api_url
+    }
+  }
+  depends_on = [google_project_service.apis]
+}
+
+# Idempotency records expire by TTL policy (the app also ignores expired records, as TTL deletion can lag).
+resource "google_firestore_field" "idempotency_ttl" {
+  collection = "idempotency"
+  field      = "expiresAt"
+  ttl_config {}
+  index_config {} # exempt from indexing: TTL fields do not need it and it avoids hot index writes
+  depends_on = [google_firestore_database.default]
+}
+
+# Failure -> alert (principle 8): permanently failed jobs log {"alert":"job_failed"}; a log metric counts them.
+resource "google_logging_metric" "job_failed" {
+  name   = "job_failed"
+  filter = "resource.type=\"cloud_run_revision\" AND jsonPayload.alert=\"job_failed\""
+  metric_descriptor {
+    metric_kind = "DELTA"
+    value_type  = "INT64"
+  }
+}
+
+resource "google_monitoring_notification_channel" "email" {
+  count        = var.alert_email == "" ? 0 : 1
+  display_name = "DriveNet alerts"
+  type         = "email"
+  labels       = { email_address = var.alert_email }
+}
+
+resource "google_monitoring_alert_policy" "job_failed" {
+  display_name = "Background job failed permanently"
+  combiner     = "OR"
+  conditions {
+    display_name = "job_failed > 0"
+    condition_threshold {
+      filter          = "metric.type=\"logging.googleapis.com/user/${google_logging_metric.job_failed.name}\" AND resource.type=\"cloud_run_revision\""
+      comparison      = "COMPARISON_GT"
+      threshold_value = 0
+      duration        = "0s"
+      aggregations {
+        alignment_period   = "60s"
+        per_series_aligner = "ALIGN_SUM"
+      }
+    }
+  }
+  notification_channels = [for c in google_monitoring_notification_channel.email : c.id]
 }

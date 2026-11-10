@@ -29,3 +29,15 @@ variable "firestore_location" {
   default     = "eur3"
   description = "Firestore location is permanent once created; pick deliberately (eur3 = EU multi-region, nam5 = US)."
 }
+
+variable "alert_email" {
+  type        = string
+  default     = ""
+  description = "Where failed-job alerts go. Empty = alert policy is created without a notification channel (add one in the console)."
+}
+
+variable "job_sweep_schedule" {
+  type        = string
+  default     = "*/5 * * * *"
+  description = "Cron (Asia/Tbilisi) for re-dispatching jobs that never reached the queue. A working assumption, tune from monitoring."
+}

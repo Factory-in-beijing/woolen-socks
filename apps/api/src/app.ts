@@ -6,6 +6,7 @@ import Fastify, {
   type FastifyReply,
 } from "fastify";
 import { registerHealth } from "./http/health.ts";
+import { registerInternalJobs, type InternalJobsDeps } from "./http/internal-jobs.ts";
 import type { Clock } from "./shared/clock.ts";
 import { AppError, toProblem } from "./shared/errors.ts";
 import type { Logger } from "./shared/logger.ts";
@@ -14,6 +15,8 @@ import { resolveTraceId } from "./shared/trace.ts";
 export interface AppDeps {
   clock: Clock;
   logger: Logger;
+  /** Present only when Cloud Tasks / Scheduler are configured (not in local dev). */
+  internalJobs?: InternalJobsDeps;
 }
 
 /** Builds the single Cloud Run service. Modules register their routes here; dependencies arrive through `deps` (principle 20). */
@@ -53,5 +56,6 @@ export function buildApp(deps: AppDeps): FastifyInstance {
   });
 
   registerHealth(app);
+  if (deps.internalJobs) registerInternalJobs(app, deps.internalJobs);
   return app;
 }

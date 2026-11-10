@@ -73,6 +73,7 @@ components:
         - slot_taken
         - hold_expired
         - invalid_transition
+        - idempotency_conflict
         - version_mismatch
         - rate_limited
         - dependency_unavailable

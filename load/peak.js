@@ -4,11 +4,15 @@
 import http from "k6/http";
 import { check, sleep } from "k6";
 
+// The architecture document (v6) targets 10 000 concurrent users; the Visual Guide sizes for 100 000 users
+// (~20 000 at peak). Which one is the launch target is OPEN — set it per run: PEAK_VUS=20000 k6 run load/peak.js
+const PEAK_VUS = Number(__ENV.PEAK_VUS || 10000);
+
 export const options = {
   stages: [
-    { duration: "2m", target: 2000 },
-    { duration: "3m", target: 10000 },
-    { duration: "5m", target: 10000 },
+    { duration: "2m", target: Math.round(PEAK_VUS / 5) },
+    { duration: "3m", target: PEAK_VUS },
+    { duration: "5m", target: PEAK_VUS },
     { duration: "1m", target: 0 },
   ],
   thresholds: {

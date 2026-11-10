@@ -30,7 +30,7 @@ export interface components {
             status: "ok";
         };
         /** @enum {string} */
-        ErrorCode: "validation_failed" | "unauthenticated" | "forbidden" | "not_found" | "slot_taken" | "hold_expired" | "invalid_transition" | "version_mismatch" | "rate_limited" | "dependency_unavailable" | "payment_unavailable" | "internal_error";
+        ErrorCode: "validation_failed" | "unauthenticated" | "forbidden" | "not_found" | "slot_taken" | "hold_expired" | "invalid_transition" | "idempotency_conflict" | "version_mismatch" | "rate_limited" | "dependency_unavailable" | "payment_unavailable" | "internal_error";
         Problem: {
             type: string;
             title: string;

@@ -40,9 +40,9 @@
 
 ## Repo-ს სტრუქტურა
 - `apps/web` — Next.js (App Router): სტუდენტის საიტი / ლენდინგი; `data/` (api-client+Query), `features/<name>`, `app/` (თხელი route), `e2e/` (Playwright).
-- `apps/api` — Cloud Run API (Fastify): `src/app.ts`, `src/shared/` (AppError, Clock, logger, trace), `src/modules/<m>/{http,application,domain,infrastructure,definition.ts,index.ts}` (M1–M8; ფენები ემატება use case-ებთან ერთად).
+- `apps/api` — Cloud Run API (Fastify): `src/app.ts`, `src/platform.ts` (composition root), `src/shared/` (ბირთვი: errors, clock, logger, `domain/` ids·money·ledger·state-machine·cursor·versioned-config·tx, `auth/` principal·can()·workspace, `idempotency/`, `jobs/`, `infrastructure/` Firestore/Tasks/OIDC/Firebase adapters), `src/modules/<m>/{http,application,domain,infrastructure,definition.ts,index.ts}` (M1–M8; ფენები ემატება use case-ებთან ერთად).
 - `packages/schemas` — zod: შეცდომის კოდები/სტატუსი, ფული, დრო, პაგინაცია. `packages/api-client` — OpenAPI (`openapi/v1.yaml`) + გენერირებული ტიპები + ტიპიზებული კლიენტი/Query. `packages/i18n` — ქართული კატალოგი და ერთადერთი formatter. `packages/ui` — design tokens.
-- `docs/architecture-digest.md` — PDF-ის სრული სამუშაო დაიჯესტი (მოდულები, ეკრანები, ნაბიჯები, ღია #1–#19). **ახალი ამოცანის წინ წაიკითხე შესაბამისი მოდული/ნაკადი.** `docs/adr/` — გადაწყვეტილებები.
+- `docs/architecture-digest.md` — PDF-ის სრული სამუშაო დაიჯესტი (მოდულები, ეკრანები, ნაბიჯები, ღია #1–#19). **ახალი ამოცანის წინ წაიკითხე შესაბამისი მოდული/ნაკადი.** `docs/playbook-new-feature.md` — ფუნქციის აგების რეცეპტი ბირთვზე; ADR-0001/0002 — სტეკი და ბირთვი. `docs/adr/` — გადაწყვეტილებები.
 - `firebase.json`, `firestore.rules`/`storage.rules` (deny-all), `firestore.indexes.json`; `infra/terraform`; `load/` (k6); `cloudbuild*.yaml`.
 - მომავალი: `apps/partner`, `apps/admin`, მობილური (ფაზა 7).
 
