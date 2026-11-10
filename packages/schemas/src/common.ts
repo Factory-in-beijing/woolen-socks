@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { API_DEFINITION } from "./definition.ts";
 
 /** Instant: UTC ISO-8601 with `Z` only (principle 14). Offsets are rejected so clients cannot smuggle local time. */
 export const InstantUtcSchema = z.iso.datetime({ offset: false });
@@ -13,8 +14,8 @@ export const MoneyDtoSchema = z.object({
 });
 export type MoneyDto = z.infer<typeof MoneyDtoSchema>;
 
-export const MAX_PAGE_SIZE = 100;
-export const DEFAULT_PAGE_SIZE = 20;
+export const MAX_PAGE_SIZE = API_DEFINITION.pageSize.max;
+export const DEFAULT_PAGE_SIZE = API_DEFINITION.pageSize.default;
 
 /** Lists are limit + cursor; `offset` is stripped and never honoured (principle 5). */
 export const PageQuerySchema = z.object({
@@ -25,3 +26,10 @@ export type PageQuery = z.infer<typeof PageQuerySchema>;
 
 export const pageOf = <T extends z.ZodType>(item: T) =>
   z.object({ items: z.array(item), nextCursor: z.string().min(1).nullable() });
+
+/** `Idempotency-Key` header: required on every POST/PUT (principle 6). */
+export const IdempotencyKeySchema = z
+  .string()
+  .min(API_DEFINITION.idempotencyKey.minLength)
+  .max(API_DEFINITION.idempotencyKey.maxLength)
+  .regex(/^[A-Za-z0-9_.:-]+$/);

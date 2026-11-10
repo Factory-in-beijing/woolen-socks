@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { CloudTasksDispatcher, type TasksClient } from "./cloud-tasks-dispatcher.ts";
 
 const config = {
+  timeoutMs: 4_000,
   queuePath: "projects/p/locations/l/queues/jobs",
   serviceUrl: "https://api.example.run.app",
   invokerServiceAccount: "inv@p.iam.gserviceaccount.com",
@@ -32,6 +33,12 @@ describe("CloudTasksDispatcher (adapter behind JobDispatcher)", () => {
       jobId: "payout:lesson/1",
     });
     expect(req?.task.scheduleTime).toBeUndefined();
+  });
+
+  it("every call has an explicit timeout (principle 22: never wait forever on the outside world)", async () => {
+    const options: unknown[] = [];
+    await dispatcherWith(async (_r, o) => void options.push(o)).dispatch({ id: "j", runAt: NOW });
+    expect(options).toEqual([{ timeout: 4_000 }]);
   });
 
   it("schedules delayed jobs (e.g. hold expiry) for their runAt", async () => {

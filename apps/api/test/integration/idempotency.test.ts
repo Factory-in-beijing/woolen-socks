@@ -15,6 +15,24 @@ idempotencyStoreContract(
   () => new FirestoreIdempotencyStore(firestore(), systemClock, 60_000),
 );
 
+describe("FirestoreIdempotencyStore document shape", () => {
+  it("stores the owning principal on the record (root collection + owner field)", async () => {
+    const store = new FirestoreIdempotencyStore(firestore(), systemClock, 60_000);
+    const scope = {
+      principalId: principalId("u-owner"),
+      route: "POST /v1/x",
+      key: `owner-${Date.now()}`,
+    };
+    await store.begin(scope, "h1");
+    const snap = await firestore()
+      .collection("idempotency")
+      .where("principalId", "==", "u-owner")
+      .limit(1)
+      .get();
+    expect(snap.empty).toBe(false);
+  });
+});
+
 describe("FirestoreIdempotencyStore expiry", () => {
   it("treats an expired record as absent (TTL deletion can lag)", async () => {
     const clock = fixedClock("2027-01-01T00:00:00Z");

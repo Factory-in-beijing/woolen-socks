@@ -1,5 +1,6 @@
 import { beforeAll, describe, expect, it } from "vitest";
 import { fixedClock } from "../../src/shared/clock.ts";
+import { workspaceId } from "../../src/shared/domain/ids.ts";
 import {
   asFirestoreTx,
   FirestoreUnitOfWork,
@@ -44,11 +45,21 @@ describe("transactional job record on Firestore (principles 7, 8)", () => {
     const id = `payout:${uid()}`;
     await runWithJobs(d, async (tx, enqueue) => {
       asFirestoreTx(tx).create(db.doc(`lessons/${id}`), { status: "completed" });
-      enqueue({ id, type: "payout", payload: { lessonId: id } });
+      enqueue({
+        id,
+        type: "payout",
+        payload: { lessonId: id },
+        workspaceId: workspaceId("ws-owner"),
+      });
     });
     expect((await db.doc(`lessons/${id}`).get()).exists).toBe(true);
     const job = (await db.doc(`jobs/${id}`).get()).data();
-    expect(job).toMatchObject({ type: "payout", state: "pending", attempts: 0 });
+    expect(job).toMatchObject({
+      type: "payout",
+      state: "pending",
+      attempts: 0,
+      workspaceId: "ws-owner",
+    });
     expect(job?.["dispatchedAt"]).not.toBeNull();
     expect(dispatcher.dispatched.map((j) => j.id)).toEqual([id]);
   });

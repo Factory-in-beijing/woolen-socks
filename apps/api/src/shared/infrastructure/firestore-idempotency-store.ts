@@ -32,6 +32,7 @@ export class FirestoreIdempotencyStore implements IdempotencyStore {
       const snap = await tx.get(ref);
       const now = this.clock.now();
       const fresh = {
+        principalId: scope.principalId, // owner field (root collection + owner)
         state: "in_progress",
         requestHash,
         createdAt: now,

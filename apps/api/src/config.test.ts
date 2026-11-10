@@ -6,6 +6,7 @@ describe("environment (parsed once at the edge)", () => {
     const env = loadEnv({});
     expect(env.PORT).toBe(8080);
     expect(env.JOB_MAX_ATTEMPTS).toBe(8);
+    expect(env.TASKS_TIMEOUT_MS).toBeGreaterThan(0); // external calls always have a timeout
   });
   it("jobs are all-or-nothing: a partial Cloud Tasks configuration is rejected", () => {
     expect(() => loadEnv({ SERVICE_URL: "https://x.run.app" })).toThrow(

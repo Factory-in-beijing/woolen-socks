@@ -45,11 +45,12 @@ export function createPlatform(env: Env, clock: Clock, logger: Logger): Platform
   if (env.SERVICE_URL && env.TASKS_QUEUE_PATH && env.TASKS_INVOKER_SA) {
     const tasks = new CloudTasksClient();
     jobDispatcher = new CloudTasksDispatcher(
-      { createTask: (request) => tasks.createTask(request) },
+      { createTask: (request, options) => tasks.createTask(request, options) },
       {
         queuePath: env.TASKS_QUEUE_PATH,
         serviceUrl: env.SERVICE_URL,
         invokerServiceAccount: env.TASKS_INVOKER_SA,
+        timeoutMs: env.TASKS_TIMEOUT_MS,
       },
       () => clock.now(),
     );

@@ -1,5 +1,4 @@
 import { createHash } from "node:crypto";
-import type { FastifyRequest } from "fastify";
 import { AppError } from "../errors.ts";
 import type { PrincipalId } from "../domain/ids.ts";
 import type { ErrorCode } from "@drivenet/schemas";
@@ -26,21 +25,6 @@ export interface IdempotencyStore {
   begin(scope: IdempotencyScope, requestHash: string): Promise<BeginResult>;
   complete(scope: IdempotencyScope, outcome: StoredOutcome): Promise<void>;
   abandon(scope: IdempotencyScope): Promise<void>;
-}
-
-const KEY_PATTERN = /^[A-Za-z0-9_.:-]{8,128}$/;
-
-/** `Idempotency-Key` is required on every POST/PUT (contract); missing or malformed → 400. */
-export function readIdempotencyKey(req: FastifyRequest): string {
-  const raw = req.headers["idempotency-key"];
-  const value = Array.isArray(raw) ? raw[0] : raw;
-  if (value === undefined || !KEY_PATTERN.test(value)) {
-    throw new AppError(
-      "validation_failed",
-      "Idempotency-Key header is required (8–128 safe characters)",
-    );
-  }
-  return value;
 }
 
 function canonical(value: unknown): string {

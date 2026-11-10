@@ -1,3 +1,5 @@
+import type { Tetri } from "@drivenet/schemas";
+
 /**
  * The single formatter for time and money (FE base: "one formatter — Asia/Tbilisi, tetri → lari").
  * Instants are stored and transported in UTC; business dates are always shown in Asia/Tbilisi,
@@ -9,8 +11,7 @@ export const LOCALE = "en-GB";
 
 const TETRI_PER_LARI = 100;
 
-/** Money amount in integer tetri (principle 10). Branded so a plain number cannot be passed by mistake. */
-export type Tetri = number & { readonly __brand: "Tetri" };
+export type { Tetri };
 
 export function tetri(amount: number): Tetri {
   if (!Number.isSafeInteger(amount)) {

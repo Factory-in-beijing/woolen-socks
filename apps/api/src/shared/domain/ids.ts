@@ -1,8 +1,8 @@
 import { AppError } from "../errors.ts";
 
-declare const brand: unique symbol;
-/** Nominal typing: a `PrincipalId` can never be passed where a `WorkspaceId` is expected (principle 19). */
-export type Brand<T, B extends string> = T & { readonly [brand]: B };
+import type { Brand } from "@drivenet/schemas";
+
+export type { Brand };
 
 export type PrincipalId = Brand<string, "PrincipalId">;
 export type WorkspaceId = Brand<string, "WorkspaceId">;

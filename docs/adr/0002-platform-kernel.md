@@ -23,6 +23,15 @@ Every module (M1–M8) needs the same living parts: who the caller is and what t
 | Lists          | `limit` + opaque cursor (`encodeCursor/decodeCursor`, validated with zod)                                                                                                                                                                                                                                                                                                                     | Principle 5                                                                                                           |
 | Client         | `ApiError`/`toApiError`, `behaviorFor(code)` (a Record over every code), `ScreenState` union, `applyServerFieldErrors`, `useIdempotencyKey`; user-facing text in `messages.errors[code]`                                                                                                                                                                                                      | Principle 13; FE base                                                                                                 |
 
+## Conformance audit (2026-11-10, against the revised Visual Guide) — changes made
+
+- **One `Tetri`/`Brand`** in `@drivenet/schemas`, used by API, i18n and clients (was defined twice with incompatible types).
+- **Numbers without a document source** (page size 20/100, `Idempotency-Key` length 8–128, query retry/stale times) moved into flagged **definition files** (`packages/schemas/src/definition.ts`, `packages/api-client/src/query-defaults.ts`); the OpenAPI contract is tested against them.
+- **Layer purity enforced by the architecture gate**: kernel `domain` has no outer layers or npm packages; `auth`/`idempotency`/`jobs` are framework-free (Fastify/Google types live in `shared/http` and `shared/infrastructure`); `http → application → domain ← infrastructure` direction. Cursor and the `Idempotency-Key` header reader moved out of the pure core.
+- **Owner fields**: job documents carry `workspaceId` (nullable) and idempotency documents carry `principalId` ("root collection + owner field").
+- **Explicit timeout** on the Cloud Tasks call (`TASKS_TIMEOUT_MS`, principle 22).
+- **Cloud Run `min instances ≥ 1`** (Terraform default and validation).
+
 ## Additions to the document's list
 
 - `idempotency_conflict` (409, non-retryable) error code — addition only. Text: `messages.errors`.

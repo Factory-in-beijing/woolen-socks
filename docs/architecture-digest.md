@@ -206,7 +206,7 @@ Client-only: STU-06 hero, STU-08 footer, STU-09 navigation, STU-34 info/Support,
 ## 8. Scale
 
 Preliminary target: **50 000 users, 10 000 concurrent at peak** (v6) — see section 12 for the Visual Guide's different figure. Working assumption (**not a fact**): one active user ≈ 1 request per 5–10 s → ~1 000–2 000 requests/s at peak. The load test will refine this.
-API: stateless Cloud Run (concurrency, min/max instances — by load test); Firestore scales itself, our job is to avoid hot spots; files/video via CDN + signed URL; BOG callback is idempotent, Maps/SMS — limit and budget alert; sign-off — k6 with 10 000 virtual users before launch.
+API: stateless Cloud Run (**min instances ≥ 1**, max instances and concurrency — by load test); Firestore scales itself, our job is to avoid hot spots; files/video via CDN + signed URL; BOG callback is idempotent, Maps/SMS — limit and budget alert; sign-off — k6 with 10 000 virtual users before launch.
 **Not built today**: cache (Memorystore), read/write split into two services, Pub/Sub, API Gateway — only when a load test or real load shows the need.
 
 ## 9. CI/CD and Ops
@@ -269,3 +269,12 @@ Source: "DriveNet 2027 · Engineering principles, architecture and patterns" (vi
 - **The path of a new feature (7 steps)**: 1 explain the feature in detail (by hand) → 2 choose a module (a new one — ADR) → 3 endpoint in OpenAPI (addition only) → 4 changeable rule → definition/config → 5 use case: 1 transaction + a job for effects → 6 test → code in small steps → 7 gates green → PR · kill switch for risk. The path of a change: a new field/endpoint — add to OpenAPI (🟢) · a new external system — port + adapter + fake (🟡) · a new module — ADR + layers + index.ts (🟡) · a breaking change — expand → deploy → migrate → contract (🔴 never directly) · deviation from a principle — we stop, ask, write an ADR (🔴).
 - **Scale — contradiction with v6**: Visual Guide: **100 000 users ≈ 20 000 at peak ≈ 2 000–4 000 req/s, k6 will refine**; v6: 50 000 users, 10 000 at peak, ≈1 000–2 000 req/s. **Open which is the launch target** → `load/peak.js` is parameterised (`PEAK_VUS`). The architecture withstands both (horizontal growth); only min/max instances and the load-test pass threshold change.
 - **Diagram legend**: Cloud CDN + Storage (signed URL) · Load Balancer + Cloud Armor (enable if needed) · read cache (level 1 — if needed; not now) · Firestore: deny-all · PITR · TTL.
+
+### Visual Guide, revised edition (file "KA_3") — differences from the first edition
+
+- **Cloud Run: `min instances ≥ 1`** (fixed rule, shown on the diagram; no cold start for users). Terraform now defaults to 1 and rejects 0.
+- **Read path** (shown explicitly): client → CDN / Cloud Run → listing document (Firestore) → response. **Write path**: JWT → `can()` → 1 transaction (+ job record) → response → job → adapter.
+- **Load Balancer + Cloud Armor**: rate limit → 429, enabled only when needed. Secret Manager feeds Cloud Run, "secrets never in clients"; Ops security: Secret Manager · MFA · IAM.
+- Firestore box: deny-all · PITR · TTL **+ config / definitions** (definitions live in Firestore config documents as well as in code).
+- 14 numbered patterns on the diagram — added to the earlier ten: 11 Observability (traceId, alert) · 12 Circuit breaker · timeout · retry (protection from the outside world) · 13 Stateless autoscale (horizontal growth) · 14 Secret Manager · MFA (security by default).
+- `/internal/jobs` is called with **OIDC** (implemented: `InternalCallerVerifier`).

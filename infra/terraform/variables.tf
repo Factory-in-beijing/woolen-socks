@@ -15,8 +15,12 @@ variable "api_image" {
 
 variable "min_instances" {
   type        = number
-  default     = 0
-  description = "Set from load-test results (B9), not guesses."
+  default     = 1
+  description = "Architecture rule: Cloud Run min instances >= 1 (no cold start for users). Raise from load-test results (B9)."
+  validation {
+    condition     = var.min_instances >= 1
+    error_message = "min_instances must be at least 1 (architecture rule)."
+  }
 }
 
 variable "max_instances" {

@@ -1,3 +1,4 @@
+import type { WorkspaceId } from "../domain/ids.ts";
 import { defineStateMachine } from "../domain/state-machine.ts";
 
 /**
@@ -18,6 +19,8 @@ export interface Job {
   readonly id: string;
   readonly type: string;
   readonly payload: Readonly<Record<string, unknown>>;
+  /** Owning workspace (owner field for support/admin queries); null for platform-level jobs. */
+  readonly workspaceId: WorkspaceId | null;
   readonly state: JobState;
   readonly attempts: number;
   readonly createdAt: Date;
@@ -33,6 +36,7 @@ export interface JobSpec {
   readonly id: string;
   readonly type: string;
   readonly payload: Readonly<Record<string, unknown>>;
+  readonly workspaceId?: WorkspaceId;
   /** Defaults to "now". Used for delayed work such as hold expiry. */
   readonly runAt?: Date;
 }
@@ -42,6 +46,7 @@ export function newJob(spec: JobSpec, now: Date): Job {
     id: spec.id,
     type: spec.type,
     payload: spec.payload,
+    workspaceId: spec.workspaceId ?? null,
     state: "pending",
     attempts: 0,
     createdAt: now,

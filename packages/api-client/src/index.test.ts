@@ -1,13 +1,27 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { parse } from "yaml";
-import { ERROR_CODES } from "@drivenet/schemas";
+import { API_DEFINITION, ERROR_CODES } from "@drivenet/schemas";
 import { createApiClient, newIdempotencyKey, parseProblem } from "./index.ts";
 
 describe("contract consistency", () => {
   it("OpenAPI ErrorCode enum equals the schemas package error codes", () => {
     const doc = parse(readFileSync(new URL("../openapi/v1.yaml", import.meta.url), "utf8"));
     expect([...doc.components.schemas.ErrorCode.enum].sort()).toEqual([...ERROR_CODES].sort());
+  });
+
+  it("OpenAPI pagination and Idempotency-Key bounds equal the schemas definition (single source)", () => {
+    const doc = parse(readFileSync(new URL("../openapi/v1.yaml", import.meta.url), "utf8"));
+    const limit = doc.components.parameters.Limit.schema;
+    expect([limit.default, limit.maximum]).toEqual([
+      API_DEFINITION.pageSize.default,
+      API_DEFINITION.pageSize.max,
+    ]);
+    const key = doc.components.parameters.IdempotencyKey.schema;
+    expect([key.minLength, key.maxLength]).toEqual([
+      API_DEFINITION.idempotencyKey.minLength,
+      API_DEFINITION.idempotencyKey.maxLength,
+    ]);
   });
 
   it("requires Idempotency-Key on every POST/PUT operation", () => {
