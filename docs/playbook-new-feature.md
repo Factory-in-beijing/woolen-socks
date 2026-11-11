@@ -5,7 +5,7 @@ The kernel (`apps/api/src/shared`) already exists — a module writes only **bus
 
 ## 0. Plan (write it in your reply before touching code)
 
-Invariant · failure cases · which queries/indexes · which module owns it · assumptions · open questions (#1–#19 in `architecture-digest.md`).
+Invariant · failure cases · which queries/indexes · which module owns it · assumptions · open questions (#1–#19 in `open-questions.md`; the module's own file in `docs/modules/`).
 
 ## 1. Contract first
 
