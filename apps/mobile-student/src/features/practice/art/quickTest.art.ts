@@ -1,0 +1,18 @@
+// SVG illustrations of the QuickTest screen (rendered by react-native-svg).
+export const art1 =
+  '<svg width="0" height="0"><defs><symbol id="cat-b" viewBox="0 0 64 40"><ellipse cx="32" cy="37.5" rx="27" ry="1.6" fill="#0E1C91" opacity=".10"></ellipse><path d="M5 28v-5.500c0-2 1.400-3.600 3.400-4L18 17l6.300-6.200c1-1 2.300-1.500 3.700-1.500h11.300c1.600 0 3.100.700 4.100 2l4.600 5.700 7.700 1.300c2 .400 3.300 2 3.300 4V28c0 1-.800 1.800-1.800 1.800H6.800C5.800 29.800 5 29 5 28z" fill="#0E1C91"></path><path d="M25 17l4.300-4.400c.500-.500 1.200-.800 1.900-.800H35V17z" fill="#DDE2FA"></path><path d="M37.500 11.800h2.900c.800 0 1.500.300 2 .900l3.500 4.300h-8.400z" fill="#DDE2FA"></path><rect x="5" y="22.500" width="54" height="2.400" fill="#FFB200"></rect><rect x="55" y="19.500" width="4" height="2.400" rx="1" fill="#FFB200"></rect><circle cx="17" cy="30" r="6" fill="#0A0E2E"></circle><circle cx="17" cy="30" r="2.52" fill="#DDE2FA"></circle><circle cx="47" cy="30" r="6" fill="#0A0E2E"></circle><circle cx="47" cy="30" r="2.52" fill="#DDE2FA"></circle></symbol></defs></svg>';
+export const art2 =
+  '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A0E2E" stroke-width="2.400" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>';
+export const art3 = '<svg width="30" height="19"><use href="#cat-b"></use></svg>';
+export const art4 =
+  '<svg width="350" height="250" viewBox="0 0 350 250" fill="none">\n    <defs>\n      <radialGradient id="q5glow" cx="0.85" cy="0.2" r="0.6"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.55"></stop><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"></stop></radialGradient>\n    </defs>\n    <path d="M0 46 Q0 30 16 28 L320 2 Q350 0 350 28 V226 Q350 250 326 250 H24 Q0 250 0 226z" fill="#FFB200"></path>\n    <path d="M0 46 Q0 30 16 28 L320 2 Q350 0 350 28 V226 Q350 250 326 250 H24 Q0 250 0 226z" fill="url(#q5glow)"></path>\n  </svg>';
+export const art5 =
+  '<svg width="96" height="108" viewBox="-30 -38 60 68" fill="none">\n    <rect x="-6" y="-36" width="12" height="9" rx="3" fill="#0E1C91"></rect>\n    <rect x="15" y="-29" width="10" height="7" rx="3" fill="#0E1C91" transform="rotate(42 20 -25.500)"></rect>\n    <circle cx="0" cy="0" r="27" fill="#FFFFFF"></circle>\n    <circle cx="0" cy="0" r="21" fill="#EEF1FF"></circle>\n    <path d="M0 -21 A21 21 0 0 1 18.200 10.500 L0 0z" fill="#0E1C91"></path>\n    <path d="M0 -17v3M17 0h-3M0 17v-3M-17 0h3" stroke="#0E1C91" stroke-width="2" stroke-linecap="round"></path>\n    <path d="M0 0V-13" stroke="#0A0E2E" stroke-width="3" stroke-linecap="round"></path>\n    <circle cx="0" cy="0" r="3.500" fill="#0A0E2E"></circle>\n  </svg>';
+export const readyRingArt = (fraction: number) =>
+  `<svg width="64" height="64" viewBox="0 0 64 64">\n      <circle cx="32" cy="32" r="27" fill="none" stroke="#EEF1FF" stroke-width="8"></circle>\n      <circle cx="32" cy="32" r="27" fill="none" stroke="#12A06A" stroke-width="8" stroke-linecap="round" pathLength="100" stroke-dasharray="${fraction * 100} 100" transform="rotate(-90 32 32)"></circle>\n    </svg>`;
+export const historyMarkArt = (passed: boolean) => {
+  const path = passed ? "M20 6 9 17l-5-5" : "M18 6 6 18M6 6l12 12";
+  return `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="${path}"></path></svg>`;
+};
+export const art8 =
+  '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A0E2E" stroke-width="2.600" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>';

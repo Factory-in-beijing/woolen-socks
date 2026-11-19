@@ -1,0 +1,17 @@
+// SVG illustrations of the VideoFull screen (rendered by react-native-svg).
+export const art1 =
+  '<svg width="844" height="390" viewBox="0 0 844 390" fill="none">\n    <defs>\n      <linearGradient id="vfSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A2CC4"></stop><stop offset="0.6" stop-color="#0E1C91"></stop><stop offset="1" stop-color="#060B4A"></stop></linearGradient>\n      <radialGradient id="vfGlow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#12A06A" stop-opacity="0.5"></stop><stop offset="1" stop-color="#12A06A" stop-opacity="0"></stop></radialGradient>\n      <linearGradient id="vfRoad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A3AC8" stop-opacity="0"></stop><stop offset="1" stop-color="#2A3AC8" stop-opacity="0.6"></stop></linearGradient>\n    </defs>\n    <rect width="844" height="390" fill="url(#vfSky)"></rect>\n    <circle cx="610" cy="130" r="150" fill="url(#vfGlow)"></circle>\n    <path d="M380 170 L-80 390 H924 L464 170 Z" fill="url(#vfRoad)"></path>\n    <path d="M422 176 V390" stroke="rgba(255,255,255,0.5)" stroke-width="5" stroke-dasharray="16 22"></path>\n    <rect x="584" y="196" width="8" height="190" rx="4" fill="rgba(255,255,255,0.16)"></rect>\n    <rect x="552" y="40" width="72" height="166" rx="24" fill="#0A0E2E" stroke="rgba(255,255,255,0.22)" stroke-width="2"></rect>\n    <circle cx="588" cy="78" r="17" fill="#E5484D"></circle>\n    <circle cx="588" cy="123" r="17" fill="#FFB200" opacity="0.3"></circle>\n    <circle cx="588" cy="168" r="17" fill="#12A06A" opacity="0.3"></circle>\n    <rect x="630" y="138" width="50" height="60" rx="16" fill="#0A0E2E" stroke="rgba(255,255,255,0.22)" stroke-width="2"></rect>\n    <path d="M641 168h24M654 156l12 12-12 12" stroke="#3EE39A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>\n  </svg>';
+export const art2 =
+  '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3M21 8h-3a2 2 0 0 1-2-2V3M3 16h3a2 2 0 0 1 2 2v3M16 21v-3a2 2 0 0 1 2-2h3"></path></svg>';
+export const art3 =
+  '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.400" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.010M3 12h.010M3 18h.010"></path></svg>';
+export const art4 =
+  '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.700L3 8"></path><path d="M3 3v5h5"></path></svg>';
+export const art5 =
+  '<svg width="30" height="30" viewBox="0 0 24 24" fill="#0A0E2E"><path d="M7 4.500v15l13-7.500z" fill="#ffffff"></path></svg>';
+export const art6 =
+  '<svg width="30" height="30" viewBox="0 0 24 24" fill="#0A0E2E"><rect x="6" y="4.500" width="4.500" height="15" rx="1.500"></rect><rect x="13.500" y="4.500" width="4.500" height="15" rx="1.500"></rect></svg>';
+export const art7 =
+  '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.700L21 8"></path><path d="M21 3v5h-5"></path></svg>';
+export const art8 =
+  '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A0E2E" stroke-width="2.800" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>';
