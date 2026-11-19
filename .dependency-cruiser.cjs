@@ -115,14 +115,14 @@ module.exports = {
       severity: "error",
       comment:
         "Web/packages must not bundle server SDKs or secrets handling (principles 2, 4, 15).",
-      from: { path: "^(apps/web|packages)/" },
+      from: { path: "^(apps/web|apps/mobile-student|packages)/" },
       to: { path: "node_modules/(firebase-admin|@google-cloud)" },
     },
     {
       name: "clients-do-not-import-api",
       severity: "error",
       comment: "Clients depend on the generated contract, not on backend code (principle 1).",
-      from: { path: "^(apps/web|packages)/" },
+      from: { path: "^(apps/web|apps/mobile-student|packages)/" },
       to: { path: "^apps/api/" },
     },
     {
@@ -130,6 +130,13 @@ module.exports = {
       severity: "error",
       from: { path: "^packages/" },
       to: { path: "^apps/" },
+    },
+    {
+      name: "mobile-features-not-import-app-routes",
+      severity: "error",
+      comment: "app/ only wires routes; src/features/<name> stays reusable (FE base).",
+      from: { path: "^apps/mobile-student/src/features/" },
+      to: { path: "^apps/mobile-student/app/" },
     },
     {
       name: "web-features-not-import-app-routes",

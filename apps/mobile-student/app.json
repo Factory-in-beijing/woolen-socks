@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "name": "DriveNet",
+    "slug": "drivenet-student",
+    "version": "1.0.0",
+    "scheme": "drivenet",
+    "orientation": "default",
+    "userInterfaceStyle": "light",
+    "plugins": ["expo-router"],
+    "web": { "bundler": "metro", "output": "single" }
+  }
+}
