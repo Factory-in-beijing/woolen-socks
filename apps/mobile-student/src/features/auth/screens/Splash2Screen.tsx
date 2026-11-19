@@ -1,0 +1,232 @@
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import logo from "../../../../assets/images/logo-white.png";
+import { logoSize } from "@/theme/assets";
+import { SvgXml } from "react-native-svg";
+import { font } from "@/theme/fonts";
+import { ScreenFrame } from "@/components/ScreenFrame";
+import * as art from "../art/splash2.art";
+import { strings } from "../strings";
+
+const s = strings.splash2;
+
+export function Splash2Screen() {
+  const router = useRouter();
+  return (
+    <ScreenFrame background="#0A1478">
+      <View style={styles.box}>
+        <View style={styles.box2} />
+        <View style={styles.box3} />
+        <View style={styles.box4} />
+      </View>
+      <SvgXml xml={art.art1} width={390} height={844} style={styles.artBox} />
+
+      <Pressable
+        style={styles.link}
+        onPress={() => router.push("/main")}
+        accessibilityRole="link"
+        accessibilityLabel="DriveNet \u2014 tap to continue"
+      >
+        <SvgXml xml={art.art2} width={390} height={844} style={styles.artBox2} />
+        <Text style={styles.text}></Text>
+        <View style={styles.box5} />
+        <View style={styles.box6}>
+          <View style={styles.box7}>
+            <Image source={logo} style={styles.image} accessibilityLabel="DriveNet" />
+            <View style={styles.box8} />
+          </View>
+        </View>
+        <View style={styles.box9}>
+          <Text style={styles.label}>
+            {s.learnItPassIt} <Text style={styles.text2}>{s.drive}</Text>
+          </Text>
+        </View>
+        <View style={styles.box10}>
+          <View style={styles.box11}>
+            <SvgXml xml={art.art3} width={44} height={44} />
+          </View>
+        </View>
+        <View style={styles.box12}>
+          <View style={styles.box11}>
+            <SvgXml xml={art.art4} width={44} height={44} />
+          </View>
+        </View>
+        <View style={styles.box13}>
+          <View style={styles.box11}>
+            <SvgXml xml={art.art5} width={44} height={44} />
+          </View>
+        </View>
+        <View style={styles.box14}>
+          <View style={styles.box15} />
+          <View style={styles.box15} />
+          <View style={styles.box15} />
+        </View>
+      </Pressable>
+    </ScreenFrame>
+  );
+}
+
+const styles = StyleSheet.create({
+  box: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    filter: "blur(60px)",
+  },
+  box2: {
+    position: "absolute",
+    left: -120,
+    top: -80,
+    width: 380,
+    height: 380,
+    backgroundColor: "#2638DA",
+    borderRadius: 190,
+  },
+  box3: {
+    position: "absolute",
+    right: -140,
+    bottom: 60,
+    width: 420,
+    height: 420,
+    backgroundColor: "#3A2BD6",
+    borderRadius: 210,
+  },
+  box4: {
+    position: "absolute",
+    left: 110,
+    top: 300,
+    width: 200,
+    height: 200,
+    backgroundColor: "rgba(255,178,0,0.35)",
+    borderRadius: 100,
+  },
+  artBox: {
+    position: "absolute",
+    left: 0,
+    top: 0,
+    opacity: 0.08,
+  },
+  link: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  artBox2: {
+    position: "absolute",
+    left: 0,
+    top: 0,
+  },
+  text: {
+    fontFamily: font.manrope[500],
+    color: "inherit",
+    textDecorationLine: "none",
+  },
+  box5: {
+    position: "absolute",
+    left: 76,
+    top: 352,
+    width: 56,
+    height: 56,
+    borderWidth: 2,
+    borderColor: "#FFB200",
+    borderRadius: 28,
+  },
+  box6: {
+    position: "absolute",
+    left: 75,
+    top: 362,
+    width: 240,
+    height: 64,
+  },
+  box7: {
+    position: "relative",
+    width: 240,
+    overflow: "hidden",
+  },
+  image: logoSize.atWidth(240),
+  box8: {
+    position: "absolute",
+    left: 0,
+    top: -10,
+    bottom: -10,
+    width: 60,
+    backgroundImage:
+      "linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.55), rgba(255,255,255,0))",
+  },
+  box9: {
+    position: "absolute",
+    left: 0,
+    top: 448,
+    right: 0,
+  },
+  text2: {
+    color: "#FFB200",
+  },
+  label: {
+    fontFamily: font.manrope[700],
+    color: "rgba(255,255,255,0.78)",
+    fontSize: 16,
+    letterSpacing: 0.1,
+    textAlign: "center",
+    textDecorationLine: "none",
+  },
+  box10: {
+    position: "absolute",
+    left: 34,
+    top: 196,
+  },
+  box11: {
+    flexDirection: "row",
+    width: 64,
+    height: 64,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(255,255,255,0.96)",
+    borderRadius: 22,
+    boxShadow: "0 18px 30px -14px rgba(3,6,40,0.6), inset 0 -3px 0 rgba(14,28,145,0.06)",
+  },
+  box12: {
+    position: "absolute",
+    top: 250,
+    right: 30,
+  },
+  box13: {
+    position: "absolute",
+    left: 52,
+    top: 560,
+  },
+  box14: {
+    flexDirection: "row",
+    position: "absolute",
+    left: 0,
+    top: 760,
+    right: 0,
+    gap: 8,
+    justifyContent: "center",
+  },
+  box15: {
+    width: 8,
+    height: 8,
+    backgroundColor: "#FFB200",
+    borderRadius: 4,
+  },
+  button: {
+    flexDirection: "row",
+    position: "absolute",
+    top: 54,
+    right: 20,
+    width: 40,
+    height: 40,
+    padding: 0,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(255,255,255,0.10)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.22)",
+    borderRadius: 20,
+  },
+});

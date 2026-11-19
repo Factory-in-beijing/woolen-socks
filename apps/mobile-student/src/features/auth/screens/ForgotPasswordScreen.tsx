@@ -2,6 +2,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { SvgXml } from "react-native-svg";
 import { font } from "@/theme/fonts";
+import { StepHeader } from "@/components/StepHeader";
 import { ScreenFrame } from "@/components/ScreenFrame";
 import * as art from "../art/forgotPassword.art";
 import { strings } from "../strings";
@@ -13,22 +14,7 @@ export function ForgotPasswordScreen() {
   return (
     <ScreenFrame background="#0E1C91">
       <SvgXml xml={art.art1} width={390} height={312} style={styles.artBox} />
-      <View style={styles.header}>
-        <Pressable
-          style={styles.link}
-          onPress={() => router.push("/log-in")}
-          accessibilityRole="link"
-          accessibilityLabel="Back to log in"
-        >
-          <SvgXml xml={art.art2} width={20} height={20} />
-        </Pressable>
-        <View style={styles.step1Of3Box}>
-          <View style={styles.box} />
-          <View style={styles.box2} />
-          <View style={styles.box2} />
-        </View>
-        <View style={styles.box3} />
-      </View>
+      <StepHeader step={1} total={3} onBack={() => router.push("/log-in")} />
       <View style={styles.section}>
         <View style={styles.box4}>
           <Text style={styles.title}>
@@ -78,16 +64,6 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
   },
-  header: {
-    flexDirection: "row",
-    position: "absolute",
-    left: 20,
-    top: 54,
-    width: 350,
-    height: 44,
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
   link: {
     flexDirection: "row",
     width: 44,
@@ -99,33 +75,11 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.26)",
     borderRadius: 22,
   },
-  step1Of3Box: {
-    flexDirection: "row",
-    height: 28,
-    paddingTop: 0,
-    paddingRight: 10,
-    paddingBottom: 0,
-    paddingLeft: 10,
-    gap: 6,
-    alignItems: "center",
-    backgroundColor: "rgba(255,255,255,0.12)",
-    borderRadius: 14,
-  },
   box: {
     width: 24,
     height: 8,
     backgroundColor: "#FFB200",
     borderRadius: 4,
-  },
-  box2: {
-    width: 8,
-    height: 8,
-    backgroundColor: "rgba(255,255,255,0.3)",
-    borderRadius: 4,
-  },
-  box3: {
-    width: 44,
-    height: 44,
   },
   section: {
     flexDirection: "column",

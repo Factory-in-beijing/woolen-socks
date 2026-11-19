@@ -10,11 +10,11 @@ pnpm --filter @drivenet/mobile-student export:web   # web build (used for visual
 
 ## Layout
 
-| Path                              | What lives there                                                                 |
-| --------------------------------- | -------------------------------------------------------------------------------- |
-| `app/`                            | Thin routes (expo-router). One file per screen, re-exporting its Screen component |
-| `src/features/<feature>/screens/` | Screen components (layout)                                                       |
-| `src/features/<feature>/art/`     | SVG illustrations as strings (rendered with `react-native-svg`)                  |
-| `src/features/<feature>/strings.ts` | UI texts of the feature (English)                                              |
-| `src/components/`                 | Shared UI building blocks (`ScreenFrame`, ...)                                   |
-| `src/theme/`                      | Fonts and design tokens                                                          |
+| Path                                | What lives there                                                                  |
+| ----------------------------------- | --------------------------------------------------------------------------------- |
+| `app/`                              | Thin routes (expo-router). One file per screen, re-exporting its Screen component |
+| `src/features/<feature>/screens/`   | Screen components (layout)                                                        |
+| `src/features/<feature>/art/`       | SVG illustrations as strings (rendered with `react-native-svg`)                   |
+| `src/features/<feature>/strings.ts` | UI texts of the feature (English)                                                 |
+| `src/components/`                   | Shared UI building blocks (`ScreenFrame`, ...)                                    |
+| `src/theme/`                        | Fonts and design tokens                                                           |
