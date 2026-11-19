@@ -129,8 +129,10 @@ export function useQuickTestRunViewModel() {
         op: answered && !marked ? 0.5 : 1,
         pick: () => {
           if (answered || ended) return;
-          setAnswers({ ...answers, [question]: i });
-          setSkipped(skipped.filter((x) => x !== question));
+          setAnswers((current) =>
+            current[question] === undefined ? { ...current, [question]: i } : current,
+          );
+          setSkipped((current) => current.filter((x) => x !== question));
           // The wrong answer that goes over the limit stays on screen for a moment, then the test ends.
           if (i !== current.right && badCount + 1 > maxMistakes)
             endTimer.current = setTimeout(() => setEnded(true), OVER_LIMIT_PAUSE_MS);

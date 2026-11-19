@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { ReviewItem, ReviewSample } from "@/data/practice/sampleReview";
 import { sampleMistakes, sampleSaved } from "@/data/practice/sampleReview";
 
@@ -33,23 +33,26 @@ export function useReviewListViewModel(mode: "mistakes" | "saved") {
   const [type, setType] = useState<TypeFilter>("all");
   const [topic, setTopic] = useState(ALL_TOPICS);
 
-  const shown = data.items.filter(
-    (x) => (type === "all" || x.type === type) && (topic === ALL_TOPICS || x.topic === topic),
-  );
-  const rows: ReviewRow[] = shown.map((x, i) => ({
-    key: `${x.type}-${x.head}`,
-    head: x.head,
-    question: x.question,
-    topic: x.topic,
-    wrong: x.wrong,
-    kind: x.kind,
-    svg: x.svg,
-    tag: x.type === "t" ? "TICKET" : "SIGN",
-    tagBg: x.type === "t" ? "#EEF1FF" : "#FFF3D6",
-    tagFg: x.type === "t" ? "#0E1C91" : "#8A5A00",
-    route: x.type === "t" ? "/ticket" : "/sign-group",
-    lineColor: i === shown.length - 1 ? "transparent" : "#EEF0F8",
-  }));
+  // Rows are rebuilt only when the data or a filter changes, so the memoised list rows can skip re-rendering.
+  const rows = useMemo<ReviewRow[]>(() => {
+    const shown = data.items.filter(
+      (x) => (type === "all" || x.type === type) && (topic === ALL_TOPICS || x.topic === topic),
+    );
+    return shown.map((x, i) => ({
+      key: `${x.type}-${x.head}`,
+      head: x.head,
+      question: x.question,
+      topic: x.topic,
+      wrong: x.wrong,
+      kind: x.kind,
+      svg: x.svg,
+      tag: x.type === "t" ? "TICKET" : "SIGN",
+      tagBg: x.type === "t" ? "#EEF1FF" : "#FFF3D6",
+      tagFg: x.type === "t" ? "#0E1C91" : "#8A5A00",
+      route: x.type === "t" ? "/ticket" : "/sign-group",
+      lineColor: i === shown.length - 1 ? "transparent" : "#EEF0F8",
+    }));
+  }, [data, type, topic]);
 
   const chipDef = type === "all" ? {} : data.topics[type];
   const total = data.totals[type];

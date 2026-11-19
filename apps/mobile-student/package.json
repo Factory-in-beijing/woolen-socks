@@ -11,24 +11,27 @@
     "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
+    "@expo-google-fonts/manrope": "*",
+    "@expo-google-fonts/noto-sans-georgian": "*",
+    "@expo-google-fonts/space-grotesk": "*",
     "expo": "58.0.26",
+    "expo-font": "*",
     "expo-router": "*",
+    "expo-status-bar": "*",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-native": "0.88.1",
-    "react-native-web": "*",
-    "react-native-svg": "15.16.0",
     "react-native-safe-area-context": "*",
     "react-native-screens": "*",
-    "expo-font": "*",
-    "expo-status-bar": "*",
-    "@expo-google-fonts/manrope": "*",
-    "@expo-google-fonts/space-grotesk": "*",
-    "@expo-google-fonts/noto-sans-georgian": "*"
+    "react-native-svg": "15.16.0",
+    "react-native-web": "*"
   },
   "devDependencies": {
-    "typescript": "5.9.3",
+    "@testing-library/react": "16.3.0",
     "@types/react": "~19.3.0",
+    "@vitest/coverage-v8": "5.1.0",
+    "jsdom": "26.1.0",
+    "typescript": "5.9.3",
     "vitest": "5.1.0"
   }
 }

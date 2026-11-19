@@ -1,12 +1,11 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import logo from "../../../../assets/images/logo-white.png";
-import { logoSize } from "@/theme/assets";
 import { SvgXml } from "react-native-svg";
-import { font } from "@/theme/fonts";
 import { ScreenFrame } from "@/components/ScreenFrame";
 import * as art from "../art/main.art";
 import { strings } from "../strings";
+import { styles } from "./MainScreen.styles";
 
 const s = strings.main;
 
@@ -45,103 +44,3 @@ export function MainScreen() {
     </ScreenFrame>
   );
 }
-
-const styles = StyleSheet.create({
-  artBox: {
-    position: "absolute",
-    left: 0,
-    top: 0,
-  },
-  box: {
-    position: "absolute",
-    left: 307,
-    top: 537,
-    width: 65,
-    height: 65,
-    marginLeft: -62,
-    backgroundColor: "#ffb200",
-    borderRadius: 32.5,
-  },
-  section: {
-    flexDirection: "column",
-    position: "absolute",
-    left: 0,
-    top: 563,
-    width: 390,
-    height: 281,
-    paddingTop: 24,
-    paddingRight: 20,
-    paddingBottom: 24,
-    paddingLeft: 20,
-    margin: 0,
-    gap: 8,
-    justifyContent: "flex-end",
-    backgroundColor: "#FFFFFF",
-    borderTopLeftRadius: 36,
-    borderTopRightRadius: 36,
-    borderBottomRightRadius: 0,
-    borderBottomLeftRadius: 0,
-  },
-  link: {
-    flexDirection: "row",
-    height: 60,
-    gap: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#0E1C91",
-    borderRadius: 30,
-  },
-  label: {
-    fontFamily: font.manrope[800],
-    color: "#FFFFFF",
-    fontSize: 17,
-    textDecorationLine: "none",
-  },
-  link2: {
-    flexDirection: "row",
-    height: 52,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 26,
-  },
-  label2: {
-    fontFamily: font.manrope[800],
-    color: "#0e1c91",
-    fontSize: 15,
-    textDecorationLine: "none",
-  },
-  box2: {
-    position: "absolute",
-    top: 66,
-    left: 105,
-    width: 180,
-    margin: 0,
-  },
-  text: {
-    color: "rgb(255, 178, 0)",
-  },
-  label3: {
-    fontFamily: font.manrope[800],
-    color: "#0a0e2e",
-    fontSize: 24,
-    letterSpacing: -1.1,
-    lineHeight: 26.4,
-    textAlign: "center",
-  },
-  header: {
-    flexDirection: "row",
-    position: "absolute",
-    left: 0,
-    top: 0,
-    width: 390,
-    zIndex: 2,
-    paddingTop: 54,
-    paddingRight: 20,
-    paddingBottom: 0,
-    paddingLeft: 20,
-    margin: 0,
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  image: logoSize.atHeight(44),
-});

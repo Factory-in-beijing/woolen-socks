@@ -1,15 +1,15 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { usePasswordField } from "@/hooks/usePasswordField";
 import { PasswordField } from "@/components/PasswordField";
 import { PasswordStrength } from "@/components/PasswordStrength";
 import { isPasswordAcceptable } from "@/lib/password";
 import { SvgXml } from "react-native-svg";
-import { font } from "@/theme/fonts";
 import { CtaButton } from "@/components/CtaButton";
 import { ScreenFrame } from "@/components/ScreenFrame";
 import * as art from "../art/changePassword.art";
 import { strings } from "../strings";
+import { styles } from "./ChangePasswordScreen.styles";
 
 const s = strings.changePassword;
 
@@ -73,100 +73,3 @@ export function ChangePasswordScreen() {
     </ScreenFrame>
   );
 }
-
-const styles = StyleSheet.create({
-  header: {
-    flexDirection: "row",
-    position: "absolute",
-    left: 20,
-    top: 54,
-    width: 350,
-    height: 44,
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  link: {
-    flexDirection: "row",
-    width: 44,
-    height: 44,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#FFFFFF",
-    borderWidth: 1,
-    borderColor: "#E2E6F6",
-    borderRadius: 22,
-  },
-  text: {
-    fontFamily: font.manrope[800],
-    color: "#0A0E2E",
-    fontSize: 17,
-    letterSpacing: -0.3,
-  },
-  box: {
-    width: 44,
-    height: 44,
-  },
-  box2: {
-    flexDirection: "column",
-    position: "absolute",
-    left: 20,
-    top: 122,
-    width: 350,
-    gap: 24,
-  },
-  box3: {
-    flexDirection: "row",
-    paddingTop: 14,
-    paddingRight: 16,
-    paddingBottom: 14,
-    paddingLeft: 16,
-    gap: 12,
-    alignItems: "center",
-    backgroundColor: "#EEF1FF",
-    borderRadius: 20,
-  },
-  box4: {
-    flexDirection: "row",
-    width: 40,
-    height: 40,
-    justifyContent: "center",
-    alignItems: "center",
-    flexShrink: 0,
-    backgroundColor: "#0E1C91",
-    borderRadius: 12,
-  },
-  text2: {
-    fontFamily: font.manrope[700],
-    color: "#3A4266",
-    fontSize: 13,
-    lineHeight: 18.2,
-  },
-  box5: {
-    flexDirection: "column",
-    gap: 8,
-  },
-  box6: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "baseline",
-  },
-  text3: {
-    fontFamily: font.manrope[800],
-    color: "#566086",
-    fontSize: 12,
-    letterSpacing: 0.3,
-  },
-  text4: {
-    fontFamily: font.manrope[800],
-    color: "#0E1C91",
-    fontSize: 12,
-    textDecorationLine: "none",
-  },
-  box14: {
-    flexDirection: "column",
-    position: "absolute",
-    left: 20,
-    bottom: 24,
-    width: 350,
-  },
-});

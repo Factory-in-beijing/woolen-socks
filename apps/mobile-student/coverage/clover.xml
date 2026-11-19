@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1795126165644" clover="3.2.0">
+  <project timestamp="1795126165644" name="All files">
+    <metrics statements="714" coveredstatements="533" conditionals="914" coveredconditionals="702" methods="297" coveredmethods="197" elements="1925" coveredelements="1432" complexity="0" loc="714" ncloc="714" packages="18" files="56" classes="56"/>
+    <package name="components">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="categoryIcons.ts" path="/home/user/woolen-socks/apps/mobile-student/src/components/categoryIcons.ts">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="features.account.components">
+      <metrics statements="7" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="reminderArt.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/account/components/reminderArt.ts">
+        <metrics statements="7" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="features.account.hooks">
+      <metrics statements="98" coveredstatements="85" conditionals="134" coveredconditionals="122" methods="47" coveredmethods="36"/>
+      <file name="useAccountViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/account/hooks/useAccountViewModel.ts">
+        <metrics statements="26" coveredstatements="24" conditionals="32" coveredconditionals="31" methods="13" coveredmethods="11"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="17" count="14" type="stmt"/>
+        <line num="18" count="14" type="stmt"/>
+        <line num="19" count="14" type="stmt"/>
+        <line num="20" count="14" type="stmt"/>
+        <line num="21" count="14" type="stmt"/>
+        <line num="22" count="14" type="stmt"/>
+        <line num="23" count="14" type="stmt"/>
+        <line num="25" count="14" type="stmt"/>
+        <line num="26" count="126" type="stmt"/>
+        <line num="28" count="28" type="stmt"/>
+        <line num="30" count="14" type="stmt"/>
+        <line num="31" count="34" type="cond" truecount="1" falsecount="1"/>
+        <line num="33" count="14" type="stmt"/>
+        <line num="43" count="84" type="stmt"/>
+        <line num="44" count="84" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="76" count="154" type="stmt"/>
+        <line num="77" count="154" type="stmt"/>
+        <line num="86" count="1" type="stmt"/>
+        <line num="87" count="1" type="stmt"/>
+      </file>
+      <file name="useEditProfileViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/account/hooks/useEditProfileViewModel.ts">
+        <metrics statements="2" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+      </file>
+      <file name="useHelpViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/account/hooks/useHelpViewModel.ts">
+        <metrics statements="15" coveredstatements="15" conditionals="22" coveredconditionals="21" methods="7" coveredmethods="7"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="10" count="7" type="stmt"/>
+        <line num="11" count="7" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="14" count="7" type="stmt"/>
+        <line num="15" count="84" type="stmt"/>
+        <line num="17" count="84" type="cond" truecount="4" falsecount="0"/>
+        <line num="22" count="7" type="stmt"/>
+        <line num="26" count="53" type="stmt"/>
+        <line num="27" count="53" type="stmt"/>
+        <line num="36" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="40" count="35" type="stmt"/>
+        <line num="41" count="35" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+      </file>
+      <file name="useNotifAllowViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/account/hooks/useNotifAllowViewModel.ts">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+      </file>
+      <file name="useNotifications2ViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/account/hooks/useNotifications2ViewModel.ts">
+        <metrics statements="41" coveredstatements="34" conditionals="72" coveredconditionals="65" methods="21" coveredmethods="14"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="42" count="5" type="stmt"/>
+        <line num="43" count="5" type="stmt"/>
+        <line num="44" count="5" type="stmt"/>
+        <line num="45" count="5" type="stmt"/>
+        <line num="47" count="5" type="stmt"/>
+        <line num="48" count="5" type="stmt"/>
+        <line num="49" count="15" type="stmt"/>
+        <line num="50" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="51" count="5" type="stmt"/>
+        <line num="52" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="55" count="15" type="stmt"/>
+        <line num="57" count="5" type="stmt"/>
+        <line num="62" count="70" type="stmt"/>
+        <line num="63" count="15" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="71" count="5" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="88" count="1" type="stmt"/>
+        <line num="89" count="25" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="94" count="25" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="100" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="101" count="20" type="stmt"/>
+        <line num="109" count="1" type="stmt"/>
+        <line num="114" count="35" type="stmt"/>
+        <line num="115" count="35" type="stmt"/>
+        <line num="121" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="126" count="15" type="stmt"/>
+        <line num="127" count="15" type="stmt"/>
+        <line num="139" count="0" type="stmt"/>
+        <line num="140" count="0" type="stmt"/>
+      </file>
+      <file name="useOfflineViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/account/hooks/useOfflineViewModel.ts">
+        <metrics statements="12" coveredstatements="12" conditionals="6" coveredconditionals="5" methods="4" coveredmethods="4"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="18" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="features.auth.hooks">
+      <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="useSignInProfileViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/auth/hooks/useSignInProfileViewModel.ts">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="features.course.components">
+      <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="materialChipIcons.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/course/components/materialChipIcons.ts">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+      </file>
+      <file name="moduleArt.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/course/components/moduleArt.ts">
+        <metrics statements="7" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="features.course.domain">
+      <metrics statements="8" coveredstatements="8" conditionals="8" coveredconditionals="7" methods="4" coveredmethods="4"/>
+      <file name="courseTypes.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/course/domain/courseTypes.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="duration.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/course/domain/duration.ts">
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="3" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="11" type="stmt"/>
+        <line num="9" count="59" type="stmt"/>
+        <line num="10" count="59" type="stmt"/>
+        <line num="11" count="59" type="stmt"/>
+      </file>
+      <file name="materialChip.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/course/domain/materialChip.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="6" coveredconditionals="5" methods="2" coveredmethods="2"/>
+        <line num="7" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="1" type="cond" truecount="1" falsecount="1"/>
+      </file>
+    </package>
+    <package name="features.course.hooks">
+      <metrics statements="116" coveredstatements="85" conditionals="143" coveredconditionals="98" methods="51" coveredmethods="35"/>
+      <file name="useExamReadyViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/course/hooks/useExamReadyViewModel.ts">
+        <metrics statements="11" coveredstatements="11" conditionals="20" coveredconditionals="19" methods="5" coveredmethods="5"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="21" type="stmt"/>
+        <line num="14" count="21" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="19" count="21" type="stmt"/>
+        <line num="20" count="21" type="stmt"/>
+        <line num="21" count="21" type="stmt"/>
+        <line num="28" count="2" type="cond" truecount="2" falsecount="0"/>
+      </file>
+      <file name="useLessonFreeViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/course/hooks/useLessonFreeViewModel.ts">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+      <file name="useLessonPlayer.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/course/hooks/useLessonPlayer.ts">
+        <metrics statements="18" coveredstatements="17" conditionals="23" coveredconditionals="15" methods="6" coveredmethods="6"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="23" count="5" type="stmt"/>
+        <line num="38" count="5" type="stmt"/>
+        <line num="39" count="5" type="stmt"/>
+        <line num="40" count="5" type="stmt"/>
+        <line num="42" count="5" type="stmt"/>
+        <line num="43" count="5" type="stmt"/>
+        <line num="44" count="5" type="stmt"/>
+        <line num="45" count="15" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="5" type="stmt"/>
+        <line num="50" count="5" type="stmt"/>
+        <line num="60" count="15" type="stmt"/>
+        <line num="61" count="15" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="73" count="15" type="stmt"/>
+      </file>
+      <file name="useMyCourseViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/course/hooks/useMyCourseViewModel.ts">
+        <metrics statements="34" coveredstatements="34" conditionals="59" coveredconditionals="54" methods="12" coveredmethods="12"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="15" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="26" count="13" type="stmt"/>
+        <line num="34" count="55" type="stmt"/>
+        <line num="42" count="3" type="stmt"/>
+        <line num="43" count="3" type="stmt"/>
+        <line num="45" count="3" type="stmt"/>
+        <line num="46" count="3" type="stmt"/>
+        <line num="47" count="27" type="stmt"/>
+        <line num="48" count="6" type="stmt"/>
+        <line num="49" count="27" type="stmt"/>
+        <line num="50" count="6" type="stmt"/>
+        <line num="51" count="3" type="stmt"/>
+        <line num="52" count="3" type="stmt"/>
+        <line num="54" count="3" type="stmt"/>
+        <line num="55" count="27" type="stmt"/>
+        <line num="56" count="27" type="cond" truecount="4" falsecount="0"/>
+        <line num="57" count="27" type="stmt"/>
+        <line num="58" count="27" type="stmt"/>
+        <line num="59" count="27" type="stmt"/>
+        <line num="60" count="27" type="cond" truecount="4" falsecount="0"/>
+        <line num="61" count="27" type="stmt"/>
+        <line num="64" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="94" count="27" type="cond" truecount="2" falsecount="0"/>
+        <line num="95" count="2" type="stmt"/>
+        <line num="96" count="10" type="cond" truecount="3" falsecount="0"/>
+        <line num="97" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="98" count="10" type="cond" truecount="4" falsecount="0"/>
+        <line num="99" count="10" type="stmt"/>
+        <line num="118" count="2" type="stmt"/>
+        <line num="121" count="9" type="stmt"/>
+        <line num="129" count="3" type="stmt"/>
+        <line num="137" count="27" type="stmt"/>
+      </file>
+      <file name="usePlayback.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/course/hooks/usePlayback.ts">
+        <metrics statements="12" coveredstatements="11" conditionals="7" coveredconditionals="4" methods="9" coveredmethods="7"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="22" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="11" type="stmt"/>
+        <line num="13" count="11" type="stmt"/>
+        <line num="14" count="11" type="stmt"/>
+        <line num="15" count="11" type="stmt"/>
+        <line num="17" count="11" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+      </file>
+      <file name="useSignInGate.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/course/hooks/useSignInGate.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+      </file>
+      <file name="useVideoErrorViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/course/hooks/useVideoErrorViewModel.ts">
+        <metrics statements="10" coveredstatements="10" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="4"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="16" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+      </file>
+      <file name="useVideoFullViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/course/hooks/useVideoFullViewModel.ts">
+        <metrics statements="25" coveredstatements="0" conditionals="28" coveredconditionals="0" methods="13" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="features.legal.hooks">
+      <metrics statements="8" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="useLegalViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/legal/hooks/useLegalViewModel.ts">
+        <metrics statements="8" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="features.practice">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="definition.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/practice/definition.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="features.practice.domain">
+      <metrics statements="38" coveredstatements="36" conditionals="29" coveredconditionals="25" methods="11" coveredmethods="9"/>
+      <file name="quickTest.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/practice/domain/quickTest.ts">
+        <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="2" methods="3" coveredmethods="1"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="15" count="1" type="cond" truecount="0" falsecount="2"/>
+      </file>
+      <file name="signQuiz.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/practice/domain/signQuiz.ts">
+        <metrics statements="15" coveredstatements="14" conditionals="9" coveredconditionals="8" methods="2" coveredmethods="2"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="12" count="27" type="cond" truecount="1" falsecount="1"/>
+        <line num="13" count="27" type="stmt"/>
+        <line num="14" count="54" type="stmt"/>
+        <line num="15" count="72" type="stmt"/>
+        <line num="16" count="72" type="stmt"/>
+        <line num="17" count="72" type="cond" truecount="5" falsecount="0"/>
+        <line num="18" count="54" type="stmt"/>
+        <line num="19" count="54" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="27" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="27" type="stmt"/>
+        <line num="26" count="27" type="stmt"/>
+        <line num="27" count="27" type="stmt"/>
+        <line num="28" count="27" type="stmt"/>
+      </file>
+      <file name="ticketProgress.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/practice/domain/ticketProgress.ts">
+        <metrics statements="16" coveredstatements="15" conditionals="16" coveredconditionals="15" methods="6" coveredmethods="6"/>
+        <line num="11" count="6536" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="6535" type="cond" truecount="4" falsecount="0"/>
+        <line num="21" count="354" type="stmt"/>
+        <line num="22" count="12" type="stmt"/>
+        <line num="23" count="12" type="stmt"/>
+        <line num="24" count="354" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="3244" type="cond" truecount="3" falsecount="1"/>
+        <line num="27" count="354" type="stmt"/>
+        <line num="29" count="12" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="354" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="13" type="stmt"/>
+        <line num="38" count="13" type="stmt"/>
+        <line num="39" count="122" type="stmt"/>
+        <line num="40" count="122" type="cond" truecount="2" falsecount="0"/>
+        <line num="42" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="features.practice.hooks">
+      <metrics statements="296" coveredstatements="220" conditionals="509" coveredconditionals="373" methods="112" coveredmethods="70"/>
+      <file name="useMistakesViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/practice/hooks/useMistakesViewModel.ts">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+      </file>
+      <file name="useQuickTestRunViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/practice/hooks/useQuickTestRunViewModel.ts">
+        <metrics statements="64" coveredstatements="61" conditionals="115" coveredconditionals="93" methods="22" coveredmethods="17"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="32" count="315" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="65" count="22" type="stmt"/>
+        <line num="66" count="22" type="stmt"/>
+        <line num="67" count="22" type="stmt"/>
+        <line num="68" count="22" type="stmt"/>
+        <line num="69" count="22" type="stmt"/>
+        <line num="70" count="22" type="stmt"/>
+        <line num="71" count="22" type="stmt"/>
+        <line num="72" count="22" type="stmt"/>
+        <line num="73" count="22" type="stmt"/>
+        <line num="75" count="22" type="stmt"/>
+        <line num="76" count="22" type="stmt"/>
+        <line num="78" count="6" type="stmt"/>
+        <line num="79" count="4" type="stmt"/>
+        <line num="81" count="22" type="stmt"/>
+        <line num="83" count="22" type="stmt"/>
+        <line num="84" count="22" type="stmt"/>
+        <line num="85" count="22" type="stmt"/>
+        <line num="86" count="22" type="stmt"/>
+        <line num="87" count="22" type="stmt"/>
+        <line num="88" count="22" type="stmt"/>
+        <line num="89" count="152" type="cond" truecount="2" falsecount="0"/>
+        <line num="90" count="64" type="stmt"/>
+        <line num="92" count="22" type="stmt"/>
+        <line num="93" count="22" type="stmt"/>
+        <line num="94" count="22" type="stmt"/>
+        <line num="95" count="24" type="stmt"/>
+        <line num="97" count="22" type="stmt"/>
+        <line num="98" count="7" type="stmt"/>
+        <line num="99" count="7" type="stmt"/>
+        <line num="102" count="22" type="stmt"/>
+        <line num="103" count="22" type="cond" truecount="2" falsecount="0"/>
+        <line num="105" count="22" type="stmt"/>
+        <line num="110" count="66" type="cond" truecount="2" falsecount="0"/>
+        <line num="111" count="66" type="cond" truecount="3" falsecount="0"/>
+        <line num="112" count="66" type="cond" truecount="2" falsecount="0"/>
+        <line num="113" count="66" type="stmt"/>
+        <line num="131" count="6" type="cond" truecount="3" falsecount="1"/>
+        <line num="132" count="6" type="stmt"/>
+        <line num="133" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="135" count="6" type="stmt"/>
+        <line num="137" count="6" type="cond" truecount="4" falsecount="0"/>
+        <line num="138" count="1" type="stmt"/>
+        <line num="143" count="660" type="stmt"/>
+        <line num="144" count="660" type="stmt"/>
+        <line num="146" count="660" type="cond" truecount="2" falsecount="0"/>
+        <line num="155" count="660" type="stmt"/>
+        <line num="156" count="660" type="stmt"/>
+        <line num="166" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="187" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="207" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="212" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="213" count="6" type="cond" truecount="1" falsecount="3"/>
+        <line num="214" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="215" count="6" type="stmt"/>
+        <line num="216" count="6" type="stmt"/>
+        <line num="223" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="225" count="0" type="stmt"/>
+      </file>
+      <file name="useQuickTestViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/practice/hooks/useQuickTestViewModel.ts">
+        <metrics statements="7" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+      </file>
+      <file name="useReviewListViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/practice/hooks/useReviewListViewModel.ts">
+        <metrics statements="23" coveredstatements="23" conditionals="38" coveredconditionals="36" methods="8" coveredmethods="8"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="24" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="31" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="8" type="stmt"/>
+        <line num="34" count="8" type="stmt"/>
+        <line num="36" count="8" type="stmt"/>
+        <line num="37" count="68" type="cond" truecount="4" falsecount="0"/>
+        <line num="39" count="53" type="stmt"/>
+        <line num="54" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="55" count="8" type="stmt"/>
+        <line num="57" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="63" count="8" type="stmt"/>
+        <line num="64" count="24" type="stmt"/>
+        <line num="65" count="24" type="stmt"/>
+        <line num="72" count="3" type="stmt"/>
+        <line num="73" count="3" type="stmt"/>
+        <line num="77" count="8" type="stmt"/>
+        <line num="83" count="8" type="stmt"/>
+        <line num="88" count="15" type="stmt"/>
+        <line num="89" count="15" type="stmt"/>
+        <line num="95" count="1" type="stmt"/>
+      </file>
+      <file name="useSavedViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/practice/hooks/useSavedViewModel.ts">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+      </file>
+      <file name="useSignGroupViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/practice/hooks/useSignGroupViewModel.ts">
+        <metrics statements="45" coveredstatements="0" conditionals="58" coveredconditionals="0" methods="22" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="47" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="86" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="89" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="96" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="113" count="0" type="stmt"/>
+        <line num="122" count="0" type="stmt"/>
+        <line num="123" count="0" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="125" count="0" type="stmt"/>
+      </file>
+      <file name="useSignQuizViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/practice/hooks/useSignQuizViewModel.ts">
+        <metrics statements="46" coveredstatements="45" conditionals="107" coveredconditionals="97" methods="15" coveredmethods="13"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="11" count="66" type="cond" truecount="1" falsecount="1"/>
+        <line num="15" count="17" type="cond" truecount="1" falsecount="1"/>
+        <line num="16" count="17" type="cond" truecount="1" falsecount="1"/>
+        <line num="17" count="17" type="stmt"/>
+        <line num="18" count="17" type="stmt"/>
+        <line num="20" count="17" type="stmt"/>
+        <line num="21" count="17" type="stmt"/>
+        <line num="22" count="17" type="stmt"/>
+        <line num="23" count="17" type="stmt"/>
+        <line num="25" count="17" type="stmt"/>
+        <line num="26" count="17" type="stmt"/>
+        <line num="27" count="17" type="stmt"/>
+        <line num="28" count="17" type="stmt"/>
+        <line num="29" count="102" type="stmt"/>
+        <line num="30" count="17" type="stmt"/>
+        <line num="32" count="17" type="stmt"/>
+        <line num="33" count="51" type="stmt"/>
+        <line num="34" count="51" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="51" type="cond" truecount="3" falsecount="0"/>
+        <line num="36" count="51" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="51" type="stmt"/>
+        <line num="38" count="51" type="cond" truecount="2" falsecount="0"/>
+        <line num="39" count="51" type="stmt"/>
+        <line num="62" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="63" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="65" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="69" count="102" type="stmt"/>
+        <line num="70" count="102" type="cond" truecount="2" falsecount="0"/>
+        <line num="72" count="42" type="cond" truecount="2" falsecount="0"/>
+        <line num="73" count="17" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="77" count="1" type="stmt"/>
+        <line num="80" count="17" type="stmt"/>
+        <line num="84" count="102" type="stmt"/>
+        <line num="85" count="102" type="stmt"/>
+        <line num="113" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="114" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="115" count="5" type="stmt"/>
+        <line num="136" count="66" type="stmt"/>
+        <line num="137" count="66" type="stmt"/>
+        <line num="138" count="66" type="stmt"/>
+      </file>
+      <file name="useTestResultViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/practice/hooks/useTestResultViewModel.ts">
+        <metrics statements="14" coveredstatements="0" conditionals="18" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+      </file>
+      <file name="useTicketViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/practice/hooks/useTicketViewModel.ts">
+        <metrics statements="28" coveredstatements="28" conditionals="55" coveredconditionals="54" methods="10" coveredmethods="10"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="43" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="12" count="28" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="23" count="15" type="stmt"/>
+        <line num="24" count="15" type="stmt"/>
+        <line num="25" count="15" type="stmt"/>
+        <line num="28" count="15" type="stmt"/>
+        <line num="29" count="15" type="stmt"/>
+        <line num="30" count="15" type="stmt"/>
+        <line num="31" count="15" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="15" type="stmt"/>
+        <line num="34" count="15" type="stmt"/>
+        <line num="48" count="45" type="cond" truecount="2" falsecount="0"/>
+        <line num="49" count="45" type="cond" truecount="3" falsecount="0"/>
+        <line num="50" count="45" type="cond" truecount="2" falsecount="0"/>
+        <line num="51" count="45" type="stmt"/>
+        <line num="64" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="66" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="84" count="1" type="stmt"/>
+        <line num="85" count="1" type="stmt"/>
+        <line num="87" count="12" type="cond" truecount="2" falsecount="0"/>
+      </file>
+      <file name="useTicketsViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/practice/hooks/useTicketsViewModel.ts">
+        <metrics statements="67" coveredstatements="63" conditionals="104" coveredconditionals="93" methods="27" coveredmethods="22"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="264" type="stmt"/>
+        <line num="28" count="109" type="cond" truecount="2" falsecount="0"/>
+        <line num="67" count="11" type="stmt"/>
+        <line num="68" count="11" type="stmt"/>
+        <line num="69" count="11" type="stmt"/>
+        <line num="70" count="11" type="stmt"/>
+        <line num="71" count="11" type="stmt"/>
+        <line num="72" count="11" type="stmt"/>
+        <line num="75" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="81" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="82" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="83" count="6534" type="stmt"/>
+        <line num="84" count="11" type="stmt"/>
+        <line num="85" count="11" type="stmt"/>
+        <line num="86" count="11" type="stmt"/>
+        <line num="87" count="11" type="stmt"/>
+        <line num="88" count="3240" type="cond" truecount="2" falsecount="0"/>
+        <line num="89" count="432" type="stmt"/>
+        <line num="91" count="11" type="stmt"/>
+        <line num="92" count="11" type="stmt"/>
+        <line num="94" count="11" type="stmt"/>
+        <line num="95" count="352" type="cond" truecount="1" falsecount="1"/>
+        <line num="96" count="99" type="stmt"/>
+        <line num="97" count="352" type="stmt"/>
+        <line num="98" count="352" type="cond" truecount="1" falsecount="1"/>
+        <line num="99" count="352" type="cond" truecount="4" falsecount="0"/>
+        <line num="100" count="352" type="cond" truecount="1" falsecount="1"/>
+        <line num="101" count="352" type="stmt"/>
+        <line num="126" count="2" type="stmt"/>
+        <line num="127" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="131" count="99" type="stmt"/>
+        <line num="142" count="99" type="stmt"/>
+        <line num="145" count="11" type="stmt"/>
+        <line num="146" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="148" count="9" type="stmt"/>
+        <line num="149" count="119" type="stmt"/>
+        <line num="150" count="32" type="cond" truecount="2" falsecount="0"/>
+        <line num="151" count="90" type="stmt"/>
+        <line num="153" count="11" type="stmt"/>
+        <line num="154" count="19" type="cond" truecount="1" falsecount="1"/>
+        <line num="155" count="11" type="cond" truecount="1" falsecount="1"/>
+        <line num="156" count="11" type="stmt"/>
+        <line num="157" count="11" type="stmt"/>
+        <line num="158" count="54" type="stmt"/>
+        <line num="159" count="54" type="stmt"/>
+        <line num="160" count="54" type="stmt"/>
+        <line num="167" count="22" type="stmt"/>
+        <line num="172" count="11" type="stmt"/>
+        <line num="173" count="11" type="stmt"/>
+        <line num="174" count="11" type="stmt"/>
+        <line num="176" count="11" type="stmt"/>
+        <line num="193" count="0" type="stmt"/>
+        <line num="194" count="1" type="stmt"/>
+        <line num="195" count="0" type="stmt"/>
+        <line num="197" count="1" type="stmt"/>
+        <line num="198" count="1" type="stmt"/>
+        <line num="213" count="0" type="stmt"/>
+        <line num="214" count="1" type="stmt"/>
+        <line num="223" count="0" type="stmt"/>
+        <line num="224" count="121" type="stmt"/>
+        <line num="233" count="1" type="stmt"/>
+        <line num="234" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="features.purchase.domain">
+      <metrics statements="16" coveredstatements="16" conditionals="14" coveredconditionals="14" methods="7" coveredmethods="7"/>
+      <file name="card.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/purchase/domain/card.ts">
+        <metrics statements="16" coveredstatements="16" conditionals="14" coveredconditionals="14" methods="7" coveredmethods="7"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="16" count="13" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="6" type="stmt"/>
+        <line num="22" count="10" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="26" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="30" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="31" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="40" count="12" type="stmt"/>
+      </file>
+    </package>
+    <package name="features.purchase.hooks">
+      <metrics statements="38" coveredstatements="22" conditionals="32" coveredconditionals="23" methods="18" coveredmethods="8"/>
+      <file name="useGetCourseViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/purchase/hooks/useGetCourseViewModel.ts">
+        <metrics statements="9" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+      </file>
+      <file name="useNotifAllowPayViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/purchase/hooks/useNotifAllowPayViewModel.ts">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+      </file>
+      <file name="usePayCardViewModel.ts" path="/home/user/woolen-socks/apps/mobile-student/src/features/purchase/hooks/usePayCardViewModel.ts">
+        <metrics statements="27" coveredstatements="22" conditionals="28" coveredconditionals="23" methods="14" coveredmethods="8"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="27" type="cond" truecount="2" falsecount="0"/>
+        <line num="26" count="9" type="stmt"/>
+        <line num="27" count="9" type="stmt"/>
+        <line num="28" count="9" type="stmt"/>
+        <line num="29" count="9" type="stmt"/>
+        <line num="30" count="9" type="stmt"/>
+        <line num="31" count="9" type="stmt"/>
+        <line num="32" count="9" type="stmt"/>
+        <line num="34" count="9" type="stmt"/>
+        <line num="35" count="9" type="stmt"/>
+        <line num="36" count="9" type="stmt"/>
+        <line num="37" count="108" type="stmt"/>
+        <line num="38" count="9" type="stmt"/>
+        <line num="44" count="9" type="stmt"/>
+        <line num="48" count="144" type="stmt"/>
+        <line num="72" count="4" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="75" count="2" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="hooks">
+      <metrics statements="10" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="8" coveredmethods="5"/>
+      <file name="useDisclosure.ts" path="/home/user/woolen-socks/apps/mobile-student/src/hooks/useDisclosure.ts">
+        <metrics statements="5" coveredstatements="5" conditionals="1" coveredconditionals="1" methods="5" coveredmethods="5"/>
+        <line num="5" count="21" type="stmt"/>
+        <line num="6" count="21" type="stmt"/>
+        <line num="7" count="21" type="stmt"/>
+        <line num="8" count="21" type="stmt"/>
+        <line num="9" count="21" type="stmt"/>
+      </file>
+      <file name="usePasswordField.ts" path="/home/user/woolen-socks/apps/mobile-student/src/hooks/usePasswordField.ts">
+        <metrics statements="5" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="lib">
+      <metrics statements="30" coveredstatements="30" conditionals="31" coveredconditionals="31" methods="15" coveredmethods="14"/>
+      <file name="collections.ts" path="/home/user/woolen-socks/apps/mobile-student/src/lib/collections.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="3" count="3094" type="stmt"/>
+        <line num="4" count="3094" type="cond" truecount="2" falsecount="0"/>
+        <line num="5" count="3093" type="stmt"/>
+      </file>
+      <file name="errorReporting.ts" path="/home/user/woolen-socks/apps/mobile-student/src/lib/errorReporting.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+      </file>
+      <file name="money.ts" path="/home/user/woolen-socks/apps/mobile-student/src/lib/money.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="cond" truecount="2" falsecount="0"/>
+      </file>
+      <file name="password.ts" path="/home/user/woolen-socks/apps/mobile-student/src/lib/password.ts">
+        <metrics statements="7" coveredstatements="7" conditionals="15" coveredconditionals="15" methods="3" coveredmethods="3"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="10" count="9" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="19" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="5" type="stmt"/>
+        <line num="26" count="5" type="cond" truecount="9" falsecount="0"/>
+      </file>
+      <file name="reminders.ts" path="/home/user/woolen-socks/apps/mobile-student/src/lib/reminders.ts">
+        <metrics statements="14" coveredstatements="14" conditionals="12" coveredconditionals="12" methods="7" coveredmethods="7"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="5" count="140" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="11" count="110" type="stmt"/>
+        <line num="15" count="11" type="stmt"/>
+        <line num="16" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="26" count="60" type="stmt"/>
+      </file>
+    </package>
+    <package name="state">
+      <metrics statements="23" coveredstatements="23" conditionals="2" coveredconditionals="2" methods="8" coveredmethods="8"/>
+      <file name="createSharedValue.ts" path="/home/user/woolen-socks/apps/mobile-student/src/state/createSharedValue.ts">
+        <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="8" coveredmethods="8"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="12" type="stmt"/>
+        <line num="12" count="12" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="19" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="7" type="stmt"/>
+        <line num="21" count="15" type="stmt"/>
+        <line num="23" count="174" type="stmt"/>
+      </file>
+      <file name="licenceCategory.ts" path="/home/user/woolen-socks/apps/mobile-student/src/state/licenceCategory.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+      </file>
+      <file name="reminders.ts" path="/home/user/woolen-socks/apps/mobile-student/src/state/reminders.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+      </file>
+      <file name="ticketLanguage.ts" path="/home/user/woolen-socks/apps/mobile-student/src/state/ticketLanguage.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="theme">
+      <metrics statements="8" coveredstatements="1" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="1"/>
+      <file name="assets.ts" path="/home/user/woolen-socks/apps/mobile-student/src/theme/assets.ts">
+        <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+      <file name="fieldFocus.ts" path="/home/user/woolen-socks/apps/mobile-student/src/theme/fieldFocus.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
+        <line num="3" count="108" type="stmt"/>
+      </file>
+      <file name="fonts.ts" path="/home/user/woolen-socks/apps/mobile-student/src/theme/fonts.ts">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="types">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="assets.d.ts" path="/home/user/woolen-socks/apps/mobile-student/src/types/assets.d.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+  </project>
+</coverage>

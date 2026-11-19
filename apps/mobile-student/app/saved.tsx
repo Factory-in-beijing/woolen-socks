@@ -1,1 +1,5 @@
-export { SavedScreen as default } from "@/features/practice/screens/SavedScreen";
+import { ReviewListScreen } from "@/features/practice/screens/ReviewListScreen";
+
+export default function SavedRoute() {
+  return <ReviewListScreen mode="saved" />;
+}

@@ -61,7 +61,10 @@ export function useTicketViewModel() {
         badgeFg: marked ? "#FFFFFF" : "#0E1C91",
         op: answered && !marked ? 0.5 : 1,
         pick: () => {
-          if (!answered) setAnswers({ ...answers, [position]: i });
+          if (!answered)
+            setAnswers((current) =>
+              current[position] === undefined ? { ...current, [position]: i } : current,
+            );
         },
       };
     }),
@@ -78,7 +81,7 @@ export function useTicketViewModel() {
       ? { borderWidth: 0, borderColor: "transparent" }
       : { borderWidth: 1, borderColor: "#E2E6F6" },
     saved: isSaved,
-    toggleSave: () => setSaved({ ...saved, [ticket.num]: !isSaved }),
+    toggleSave: () => setSaved((current) => ({ ...current, [ticket.num]: !current[ticket.num] })),
     next: () => setPosition(Math.min(total, position + 1)),
     prev: () => {
       if (position > 1) setPosition(position - 1);

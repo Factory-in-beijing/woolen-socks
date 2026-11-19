@@ -122,7 +122,10 @@ export function useTicketsViewModel() {
         pctFg: pct ? (pct >= GOOD_PERCENT ? "#0B8457" : "#B97A00") : "#0E1C91",
         barW: `${pct}%`,
         bar: pct >= GOOD_PERCENT ? "#0B8457" : "#FFB200",
-        toggle: () => setPicked(on ? picked.filter((x) => x !== t) : [...picked, t]),
+        toggle: () =>
+          setPicked((current) =>
+            current.includes(t) ? current.filter((x) => x !== t) : [...current, t],
+          ),
       };
     });
     const head: ModuleHeadRow = {

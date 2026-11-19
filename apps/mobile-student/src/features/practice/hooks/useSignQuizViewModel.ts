@@ -59,9 +59,10 @@ export function useSignQuizViewModel(groupId: number) {
       badgeBg: right ? "#12A06A" : wrong ? "#E5484D" : "#EEF1FF",
       badgeFg: marked ? "#FFFFFF" : "#0E1C91",
       pick: () => {
-        if (!answered) setPicks({ ...picks, [q]: index });
+        if (!answered)
+          setPicks((current) => (current[q] === undefined ? { ...current, [q]: index } : current));
       },
-      toggle: () => setOpenMeaning({ ...openMeaning, [key]: !expanded }),
+      toggle: () => setOpenMeaning((current) => ({ ...current, [key]: !(current[key] ?? right) })),
     };
   });
 

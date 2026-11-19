@@ -249,7 +249,6 @@ export const strings = {
     lesson2Module3: "Lesson 2 · Module 3",
     extraLightSections: "Extra light sections",
     chapters: "Chapters",
-    n840: "/ 8:40",
     next: "Next",
     controlledIntersections: "Controlled intersections",
   },

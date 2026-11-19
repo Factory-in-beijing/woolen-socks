@@ -36,6 +36,7 @@ export function useSignGroupViewModel(groupId: number) {
     if (!next.delete(code)) next.add(code);
     return next;
   };
+  const toggleCode = (code: string) => (current: Set<string>) => toggleIn(current, code);
 
   const base = {
     title: group.title,
@@ -109,7 +110,7 @@ export function useSignGroupViewModel(groupId: number) {
       saveBg: isSaved ? "#FFB200" : "#FFFFFF",
       saveBorder: { borderWidth: 1, borderColor: isSaved ? "#FFB200" : "#E2E6F6" },
       saved: isSaved,
-      toggleSave: () => setSaved(toggleIn(saved, sign.code)),
+      toggleSave: () => setSaved(toggleCode(sign.code)),
       learnedLabel: done ? "Learned" : "Mark as learned",
       learnedBg: done ? "#FFFFFF" : "#FFB200",
       learnedBorder: done
@@ -118,7 +119,7 @@ export function useSignGroupViewModel(groupId: number) {
       learnedShadow: done ? undefined : "0 14px 30px rgba(14,28,145,0.18)",
       dotBg: done ? "#FFB200" : "transparent",
       dotRing: done ? undefined : "inset 0 0 0 2px #0A0E2E",
-      toggleLearned: () => setLearned(toggleIn(learned, sign.code)),
+      toggleLearned: () => setLearned(toggleCode(sign.code)),
       close: () => setOpen(null),
       prev: () => go(-1),
       next: () => go(1),
