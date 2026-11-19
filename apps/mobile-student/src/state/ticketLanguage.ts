@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from "react";
+import { createSharedValue } from "./createSharedValue";
 
 /** Languages the theory tickets are available in (content language, not the UI language). */
 export const TICKET_LANGUAGES = [
@@ -13,21 +13,7 @@ export const TICKET_LANGUAGES = [
 export type TicketLanguageCode = (typeof TICKET_LANGUAGES)[number]["code"];
 
 // One value for the whole app: chosen at sign-up, shown and changed in Account.
-// In-memory for now; persistence (device storage / profile on the server) is attached with the backend.
-let current: TicketLanguageCode = "KA";
-const listeners = new Set<() => void>();
+const ticketLanguage = createSharedValue<TicketLanguageCode>("KA");
 
-export function setTicketLanguage(code: TicketLanguageCode): void {
-  if (code === current) return;
-  current = code;
-  listeners.forEach((notify) => notify());
-}
-
-function subscribe(listener: () => void): () => void {
-  listeners.add(listener);
-  return () => listeners.delete(listener);
-}
-
-export function useTicketLanguage(): TicketLanguageCode {
-  return useSyncExternalStore(subscribe, () => current);
-}
+export const setTicketLanguage = ticketLanguage.set;
+export const useTicketLanguage = ticketLanguage.use;

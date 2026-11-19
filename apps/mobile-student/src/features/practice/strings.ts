@@ -34,9 +34,11 @@ export const strings = {
     questions: "questions",
     min: "min",
     timeLimit: "time limit",
+    n5: "5",
     mistakesMax: "mistakes max",
     lastTests: "Last tests",
     tapToReview: "tap to review",
+    n302: "/30",
     startTest: "Start test",
   },
   quickTestRun: {
@@ -53,7 +55,7 @@ export const strings = {
     testOver: "Test over",
     thatWasYour: "That was your",
     n6thMistake: "6th mistake",
-    theExamAllows5: ". The exam allows {max}, so this attempt ends here and counts as failed.",
+    theExamAllows5: ". The exam allows 5, so this attempt ends here and counts as failed.",
     seeResult: "See result",
   },
   roadSignsV3: {
@@ -122,7 +124,27 @@ export const strings = {
     findItHereReady: "Find it here, ready to practise again.",
     browseTickets: "Browse tickets",
   },
+  signGroup: {
+    roadSignsGroup2: "Road signs · group 2 of 8",
+    prioritySigns: "Priority signs",
+    quizThisGroup: "Quiz this group",
+    learned: "Learned",
+    whatItMeans: "What it means",
+  },
+  signQuiz: {
+    signQuiz: "Sign quiz",
+    prioritySigns: "Priority signs",
+    tapToReadIn: "Tap to read in full",
+  },
   testResult: {
+    testResult: "Test result",
+    of30: "of 30",
+    mistakesToReview: "Mistakes to review",
+    tapToSeeWhy: "tap to see why",
+    you: "You:",
+    correct: "· Correct:",
+  },
+  testResultFailed: {
     testResult: "Test result",
     of30: "of 30",
     mistakesToReview: "Mistakes to review",

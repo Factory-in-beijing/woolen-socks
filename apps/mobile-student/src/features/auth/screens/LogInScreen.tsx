@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
-import { usePasswordField } from "../hooks/usePasswordField";
+import { usePasswordField } from "@/hooks/usePasswordField";
 import { PasswordField } from "@/components/PasswordField";
 import { SvgXml } from "react-native-svg";
 import { font } from "@/theme/fonts";

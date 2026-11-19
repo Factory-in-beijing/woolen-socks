@@ -6,7 +6,7 @@ import { SvgXml } from "react-native-svg";
 import { font } from "@/theme/fonts";
 import { ScreenFrame } from "@/components/ScreenFrame";
 import * as art from "../art/tickets.art";
-import { CATEGORY_ICONS } from "../art/categoryIcons";
+import { CATEGORY_ICONS } from "@/components/categoryIcons";
 import { TOPIC_ICONS } from "../art/topicIcons";
 import { strings } from "../strings";
 

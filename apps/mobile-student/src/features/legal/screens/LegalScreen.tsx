@@ -1,25 +1,31 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
-import { useTermsSignInViewModel } from "../hooks/useTermsSignInViewModel";
+import { useLegalViewModel } from "../hooks/useLegalViewModel";
 import { SvgXml } from "react-native-svg";
 import { font } from "@/theme/fonts";
 import { ScreenFrame } from "@/components/ScreenFrame";
-import * as art from "../art/termsSignIn.art";
+import * as art from "../art/legal.art";
 import { strings } from "../strings";
 
-const s = strings.termsSignIn;
+const s = strings.legal;
 
-export function TermsSignInScreen() {
+type LegalScreenProps = {
+  /** Where the back button leads (sign-in flow or Account). */
+  backRoute: string;
+  backLabel: string;
+};
+
+export function LegalScreen({ backRoute, backLabel }: LegalScreenProps) {
   const router = useRouter();
-  const vm = useTermsSignInViewModel();
+  const vm = useLegalViewModel();
   return (
     <ScreenFrame background="#F6F7FD">
       <View style={styles.header}>
         <Pressable
           style={styles.link}
-          onPress={() => router.push("/sign-in")}
+          onPress={() => router.push(backRoute)}
           accessibilityRole="link"
-          accessibilityLabel="Back to sign in"
+          accessibilityLabel={backLabel}
         >
           <SvgXml xml={art.art1} width={20} height={20} />
         </Pressable>
