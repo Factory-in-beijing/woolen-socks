@@ -2,6 +2,8 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { SvgXml } from "react-native-svg";
 import { font } from "@/theme/fonts";
+import { formatGel } from "@/lib/money";
+import { useCourseOffer } from "@/data/courseOffer";
 import { ScreenFrame } from "@/components/ScreenFrame";
 import * as art from "../art/paySuccess.art";
 import { strings } from "../strings";
@@ -9,6 +11,7 @@ import { strings } from "../strings";
 const s = strings.paySuccess;
 
 export function PaySuccessScreen() {
+  const offer = useCourseOffer();
   const router = useRouter();
   return (
     <ScreenFrame background="#F6F7FD">
@@ -40,7 +43,7 @@ export function PaySuccessScreen() {
           </View>
           <View style={styles.box6}>
             <Text style={styles.text4}>{s.totalPaid}</Text>
-            <Text style={styles.text5}>{s.n79}</Text>
+            <Text style={styles.text5}>{formatGel(offer.price)}</Text>
           </View>
         </View>
         <View style={styles.box7}>

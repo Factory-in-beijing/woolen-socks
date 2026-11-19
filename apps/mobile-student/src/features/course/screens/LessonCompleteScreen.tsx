@@ -318,6 +318,7 @@ const styles = StyleSheet.create({
   box12: {
     flexDirection: "column",
     minWidth: 0,
+    flexShrink: 1,
     gap: 4,
   },
   text10: {

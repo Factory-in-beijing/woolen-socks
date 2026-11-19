@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { SvgXml } from "react-native-svg";
 import { font } from "@/theme/fonts";
@@ -22,7 +22,7 @@ export function MyCourseExpiredScreen() {
           <Text style={styles.text}>{s.bB1}</Text>
         </View>
       </View>
-      <View style={styles.box3}>
+      <ScrollView style={styles.box3} showsVerticalScrollIndicator={false}>
         <View style={styles.box4}>
           <View style={styles.section}>
             <SvgXml xml={art.art3} width={350} height={300} style={styles.artBox2} />
@@ -142,7 +142,7 @@ export function MyCourseExpiredScreen() {
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
       <View style={styles.box26} />
       <View style={styles.nav}>
         <Pressable

@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { useTermsSignInViewModel } from "../hooks/useTermsSignInViewModel";
 import { SvgXml } from "react-native-svg";
@@ -26,7 +26,7 @@ export function TermsSignInScreen() {
         <Text style={styles.text}>{s.termsAndPrivacy}</Text>
         <View style={styles.box} />
       </View>
-      <View style={styles.box2}>
+      <ScrollView style={styles.box2} showsVerticalScrollIndicator={false}>
         <View style={styles.box3}>
           <View
             style={[
@@ -213,7 +213,7 @@ export function TermsSignInScreen() {
             </View>
           </Pressable>
         </View>
-      </View>
+      </ScrollView>
     </ScreenFrame>
   );
 }
