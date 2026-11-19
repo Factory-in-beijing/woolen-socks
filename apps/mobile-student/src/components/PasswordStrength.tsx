@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { SvgXml } from "react-native-svg";
 import { font } from "@/theme/fonts";
-import { checkPassword, scorePassword } from "../domain/password";
+import { checkPassword, scorePassword } from "@/lib/password";
 
 const CHECK =
   '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';

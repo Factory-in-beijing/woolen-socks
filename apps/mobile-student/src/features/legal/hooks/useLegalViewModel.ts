@@ -25,7 +25,7 @@ const TAB_ACTIVE = "#FFFFFF";
 const TAB_IDLE = "#566086";
 
 /** State of the Terms / Privacy switcher: which tab is open and how the hero and tab pill look for it. */
-export function useTermsSignInViewModel() {
+export function useLegalViewModel() {
   const [tab, setTab] = useState<LegalTab>("terms");
   return {
     tab,
